@@ -1,0 +1,77 @@
+{
+  "detection_delay": {
+    "drift_cusum_days": 9.7,
+    "fixed_threshold_days": 9.5,
+    "delay_difference_days": -0.2
+  },
+  "false_alarm_rate_per_100_days": {
+    "drift_personal_band": 0.83,
+    "fixed_threshold": 4.79
+  },
+  "question_burden": {
+    "traditional_per_week": 105,
+    "drift_per_week": 28,
+    "reduction_percent": 73.3,
+    "seconds_per_checkin": 25
+  },
+  "random_forest": {
+    "accuracy": 0.928,
+    "confusion_matrix": [
+      [
+        502,
+        4,
+        0
+      ],
+      [
+        18,
+        56,
+        1
+      ],
+      [
+        18,
+        3,
+        13
+      ]
+    ],
+    "feature_importances": [
+      [
+        "stress",
+        0.474
+      ],
+      [
+        "sleep",
+        0.216
+      ],
+      [
+        "mood",
+        0.148
+      ],
+      [
+        "academic_pressure",
+        0.094
+      ],
+      [
+        "study",
+        0.045
+      ],
+      [
+        "screen",
+        0.009
+      ],
+      [
+        "exercise",
+        0.009
+      ],
+      [
+        "social",
+        0.006
+      ]
+    ],
+    "classes": [
+      "Low Concern",
+      "Moderate Concern",
+      "Higher Concern"
+    ],
+    "disclaimer": "Trained on synthetic data. Prototype-level concern level only. Not clinically validated."
+  }
+}

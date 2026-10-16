@@ -1,0 +1,5 @@
+Metric,Drift (Proposed),Fixed Threshold (Baseline)
+Early-Warning Detection Delay (Days),9.7,9.5
+False Alarm Rate (/100 student-days),0.83,4.79
+Questions Per Student / Week,28.0,105.0
+Estimated Check-in Time (Seconds),25.0,180.0

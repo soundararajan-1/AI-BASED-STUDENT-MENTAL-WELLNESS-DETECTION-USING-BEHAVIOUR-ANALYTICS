@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Wellness Assessment</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Student Wellness Assessment</h1>
+
+<form action="/predict" method="POST">
+
+<p>Anxiety Level</p>
+<select name="anxiety_level">
+{% for i in range(0,22) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Self Esteem</p>
+<select name="self_esteem">
+{% for i in range(0,31) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Mental Health History</p>
+<select name="mental_health_history">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+
+<p>Depression</p>
+<select name="depression">
+{% for i in range(0,28) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Headache</p>
+<select name="headache">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Blood Pressure</p>
+<select name="blood_pressure">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Sleep Quality</p>
+<select name="sleep_quality">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Breathing Problem</p>
+<select name="breathing_problem">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Noise Level</p>
+<select name="noise_level">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Living Conditions</p>
+<select name="living_conditions">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Safety</p>
+<select name="safety">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Basic Needs</p>
+<select name="basic_needs">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Academic Performance</p>
+<select name="academic_performance">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Study Load</p>
+<select name="study_load">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Teacher Student Relationship</p>
+<select name="teacher_student_relationship">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Future Career Concerns</p>
+<select name="future_career_concerns">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Social Support</p>
+<select name="social_support">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Peer Pressure</p>
+<select name="peer_pressure">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Extracurricular Activities</p>
+<select name="extracurricular_activities">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<p>Bullying</p>
+<select name="bullying">
+{% for i in range(0,6) %}
+<option value="{{i}}">{{i}}</option>
+{% endfor %}
+</select>
+
+<br><br>
+
+<button type="submit">Predict Stress</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
