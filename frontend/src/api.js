@@ -2,7 +2,7 @@
  * API client for Drift: Student Wellness Early-Warning System.
  */
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
 export async function fetchStudent(studentId) {
   const res = await fetch(`${API_BASE}/students/${studentId}`);

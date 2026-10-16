@@ -1,0 +1,38 @@
+services:
+  # ----------------------------------------------------
+  # 1. FastAPI Backend Web Service
+  # ----------------------------------------------------
+  - type: web
+    name: student-wellness-api
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: CORS_ORIGIN_REGEX
+        value: "https://.*(vercel\\.app|onrender\\.com|netlify\\.app)"
+
+  # ----------------------------------------------------
+  # 2. React Vite Frontend Static Site
+  # ----------------------------------------------------
+  - type: web
+    name: student-wellness-web
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: student-wellness-api
+          property: host
