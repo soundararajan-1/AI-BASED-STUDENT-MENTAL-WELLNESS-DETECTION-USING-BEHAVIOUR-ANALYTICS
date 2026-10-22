@@ -18,7 +18,9 @@ import {
   LogOut,
   Lock,
   Key,
-  User
+  User,
+  Activity,
+  Sparkles
 } from 'lucide-react';
 
 import {
