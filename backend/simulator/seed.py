@@ -61,6 +61,9 @@ def seed_database(reference_end_date: str = "2026-10-01", total_days: int = 60):
             # Create Student profile record
             student_rec = Student(
                 student_id=persona.student_id,
+                name="Alex Morgan" if persona.student_id == "S001" else f"Student {persona.student_id}",
+                password="student123",
+                status="approved",
                 year=persona.year,
                 department=persona.department,
                 age_range=persona.age_range,

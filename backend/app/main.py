@@ -22,8 +22,20 @@ from app.api import students, checkins, dashboard, counsellor, auth, ask
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initialize database tables on application startup."""
+    """Initialize database tables and auto-seed dataset on startup if not already seeded."""
     init_db()
+    try:
+        from app.db import SessionLocal
+        from app.models import Student
+        from simulator.seed import seed_database
+        with SessionLocal() as db:
+            s001 = db.query(Student).filter(Student.student_id == "S001").first()
+            if not s001:
+                print("Student 'S001' not found in database. Auto-seeding 60-day cohort dataset...")
+                seed_database()
+                print("Database auto-seeding completed successfully!")
+    except Exception as e:
+        print(f"Lifespan auto-seed notice: {e}")
     yield
 
 
@@ -98,6 +110,14 @@ def health_check():
         "ml_model_status": "ready",
         "disclaimer": "Educational wellness-support prototype. Not a medical diagnostic tool."
     }
+
+
+@app.post("/auth/seed")
+def trigger_seed():
+    """Endpoint to seed or re-seed the full 60-day cohort dataset."""
+    from simulator.seed import seed_database
+    seed_database()
+    return {"status": "ok", "message": "Database successfully seeded with S001 and 40-student cohort across 60 days."}
 
 
 @app.get("/eval/results")
