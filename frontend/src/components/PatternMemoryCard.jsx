@@ -54,7 +54,7 @@ export default function PatternMemoryCard({ memoryData }) {
             fontSize: '11.5px',
             fontWeight: '700'
           }}>
-            Closest Match: Week {closest_week}
+            Closest Match: {typeof closest_week === 'object' ? (closest_week.label || `Week ${closest_week.week}`) : `Week ${closest_week}`}
           </div>
         )}
       </div>

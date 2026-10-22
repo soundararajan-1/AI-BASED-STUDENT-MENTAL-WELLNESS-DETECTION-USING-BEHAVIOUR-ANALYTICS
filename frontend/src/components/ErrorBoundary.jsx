@@ -117,7 +117,7 @@ export default class ErrorBoundary extends React.Component {
             </div>
 
             {this.state.error && (
-              <details style={{ marginTop: '24px', textAlign: 'left', fontSize: '11px', color: '#84938B', background: '#FAFBF9', padding: '10px 14px', borderRadius: '8px', border: '1px solid #E3E7DD' }}>
+              <details open style={{ marginTop: '24px', textAlign: 'left', fontSize: '11px', color: '#84938B', background: '#FAFBF9', padding: '10px 14px', borderRadius: '8px', border: '1px solid #E3E7DD' }}>
                 <summary style={{ cursor: 'pointer', fontWeight: '600' }}>Diagnostic Details</summary>
                 <pre style={{ marginTop: '8px', whiteSpace: 'pre-wrap', wordBreak: 'break-all', color: '#E11D48' }}>
                   {this.state.error.toString()}
