@@ -601,7 +601,12 @@ export default function App() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
                 <span style={{ fontSize: '32px', fontWeight: 800, color: '#24332F', letterSpacing: '-0.5px' }}>
-                  {dashboard?.today_checkin ? Math.min(Math.max(Math.round(100 - (dashboard.today_checkin.stress_level - 1) * 16 + ((dashboard.today_checkin.sleep_hours || 7) - 7) * 4), 30), 98) : 84}
+                  {(() => {
+                    const checkin = dashboard?.today_checkin;
+                    const stress = Number(checkin?.stress ?? checkin?.stress_level ?? 2);
+                    const sleep = Number(checkin?.sleep ?? checkin?.sleep_hours ?? 7.5);
+                    return Math.min(Math.max(Math.round(100 - (stress - 1) * 15 + (sleep - 7) * 4), 35), 98);
+                  })()}
                 </span>
                 <span style={{ fontSize: '13px', color: '#84938B', fontWeight: 600 }}>/ 100</span>
               </div>
@@ -619,7 +624,13 @@ export default function App() {
                   stroke="url(#wellnessScoreGrad)"
                   strokeWidth="4.5"
                   strokeDasharray="132"
-                  strokeDashoffset={132 - (132 * (dashboard?.today_checkin ? Math.min(Math.max(Math.round(100 - (dashboard.today_checkin.stress_level - 1) * 16), 30), 98) : 84)) / 100}
+                  strokeDashoffset={(() => {
+                    const checkin = dashboard?.today_checkin;
+                    const stress = Number(checkin?.stress ?? checkin?.stress_level ?? 2);
+                    const sleep = Number(checkin?.sleep ?? checkin?.sleep_hours ?? 7.5);
+                    const score = Math.min(Math.max(Math.round(100 - (stress - 1) * 15 + (sleep - 7) * 4), 35), 98);
+                    return 132 - (132 * score) / 100;
+                  })()}
                   strokeLinecap="round"
                   transform="rotate(-90 26 26)"
                 />
