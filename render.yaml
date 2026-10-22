@@ -21,8 +21,6 @@ services:
   - type: web
     name: student-wellness-web
     runtime: static
-    region: oregon
-    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
