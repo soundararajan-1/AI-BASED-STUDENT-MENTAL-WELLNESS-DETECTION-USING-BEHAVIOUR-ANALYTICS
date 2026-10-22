@@ -3,7 +3,10 @@
  * Communicates with the FastAPI backend.
  */
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const rawBase = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const API_BASE = (rawBase.startsWith("http://") || rawBase.startsWith("https://"))
+  ? rawBase.replace(/\/$/, "")
+  : `https://${rawBase.replace(/\/$/, "")}`;
 
 export async function checkBackendHealth() {
   const startTime = performance.now();

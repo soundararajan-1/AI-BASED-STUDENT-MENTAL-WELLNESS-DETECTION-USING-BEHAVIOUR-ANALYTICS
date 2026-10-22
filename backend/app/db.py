@@ -17,6 +17,10 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 DB_PATH = DATA_DIR / "drift.db"
 DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DB_PATH}")
 
+# Fix postgres:// prefix for SQLAlchemy compatibility
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 # SQLite connection arguments for concurrency & thread safety
 engine = create_engine(
     DATABASE_URL,
@@ -49,16 +53,17 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
     # If using SQLite, check and add missing columns to students table
-    try:
-        with engine.connect() as conn:
-            table_info = conn.exec_driver_sql("PRAGMA table_info(students)").fetchall()
-            existing_cols = [c[1] for c in table_info]
-            if "status" not in existing_cols:
-                conn.exec_driver_sql("ALTER TABLE students ADD COLUMN status VARCHAR DEFAULT 'approved'")
-            if "name" not in existing_cols:
-                conn.exec_driver_sql("ALTER TABLE students ADD COLUMN name VARCHAR")
-            if "password" not in existing_cols:
-                conn.exec_driver_sql("ALTER TABLE students ADD COLUMN password VARCHAR")
-            conn.commit()
-    except Exception as e:
-        print(f"init_db migration notice: {e}")
+    if "sqlite" in str(engine.url):
+        try:
+            with engine.connect() as conn:
+                table_info = conn.exec_driver_sql("PRAGMA table_info(students)").fetchall()
+                existing_cols = [c[1] for c in table_info]
+                if "status" not in existing_cols:
+                    conn.exec_driver_sql("ALTER TABLE students ADD COLUMN status VARCHAR DEFAULT 'approved'")
+                if "name" not in existing_cols:
+                    conn.exec_driver_sql("ALTER TABLE students ADD COLUMN name VARCHAR")
+                if "password" not in existing_cols:
+                    conn.exec_driver_sql("ALTER TABLE students ADD COLUMN password VARCHAR")
+                conn.commit()
+        except Exception as e:
+            print(f"init_db migration notice: {e}")
