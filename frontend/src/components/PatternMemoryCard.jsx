@@ -13,31 +13,31 @@ export default function PatternMemoryCard({ memoryData }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
-            background: 'rgba(99, 102, 241, 0.2)',
+            background: '#E8E1F5',
             padding: '6px',
             borderRadius: '8px',
-            color: '#a5b4fc'
+            color: '#4C3B70'
           }}>
             <History size={18} />
           </div>
           <div>
             <span className="badge badge-indigo" style={{ marginBottom: '4px' }}>Pattern Memory</span>
-            <h3 style={{ fontSize: '15px', fontWeight: '700' }}>Historical Resemblance</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#24332F' }}>Historical Resemblance</h3>
           </div>
         </div>
 
-        <span style={{ fontSize: '11px', color: '#94a3b8' }}>
+        <span style={{ fontSize: '11px', color: '#63736B' }}>
           Vector Distance: {distance}
         </span>
       </div>
 
       <div style={{
-        background: 'rgba(99, 102, 241, 0.08)',
-        border: '1px solid rgba(99, 102, 241, 0.25)',
+        background: '#FAFBF9',
+        border: '1px solid #E3E7DD',
         borderRadius: '12px',
         padding: '14px 16px',
         fontSize: '13px',
-        color: '#f8fafc',
+        color: '#24332F',
         lineHeight: '1.5',
         marginBottom: '10px'
       }}>
@@ -45,16 +45,18 @@ export default function PatternMemoryCard({ memoryData }) {
       </div>
 
       {similar_metrics && similar_metrics.length > 0 && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', fontSize: '12px', color: '#94a3b8' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', fontSize: '12px', color: '#63736B' }}>
           <span>Closest metrics:</span>
           {similar_metrics.map((m) => (
             <span
               key={m}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                padding: '2px 8px',
+                background: '#F6F5EF',
+                border: '1px solid #E3E7DD',
+                padding: '3px 8px',
                 borderRadius: '6px',
-                color: '#cbd5e1',
+                color: '#24332F',
+                fontWeight: 500,
                 textTransform: 'capitalize'
               }}
             >

@@ -217,8 +217,9 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
         height: isFloating ? '540px' : '620px',
         padding: '0',
         overflow: 'hidden',
-        border: '1px solid rgba(99, 102, 241, 0.35)',
-        boxShadow: '0 20px 45px -10px rgba(0, 0, 0, 0.65)',
+        background: '#FFFFFF',
+        border: '1px solid #E3E7DD',
+        boxShadow: '0 12px 36px rgba(36, 51, 47, 0.08)',
         position: 'relative'
       }}
     >
@@ -226,8 +227,8 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
       <div
         style={{
           padding: '16px 20px',
-          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          background: '#FAFBF9',
+          borderBottom: '1px solid #E3E7DD',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -239,11 +240,11 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
           <div
             style={{
               position: 'relative',
-              background: 'linear-gradient(135deg, #6366f1, #14b8a6)',
+              background: '#245B52',
               padding: '8px',
-              borderRadius: '12px',
+              borderRadius: '10px',
               color: '#ffffff',
-              boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)'
+              boxShadow: '0 2px 8px rgba(36, 91, 82, 0.2)'
             }}
           >
             <Bot size={22} />
@@ -255,14 +256,14 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                 width: '10px',
                 height: '10px',
                 borderRadius: '50%',
-                background: '#10b981',
-                border: '2px solid #0f172a'
+                background: '#DDE9DF',
+                border: '2px solid #245B52'
               }}
             />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#f8fafc', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#24332F', margin: 0 }}>
                 Drift Real-Time Assistant
               </h3>
               <span
@@ -270,19 +271,20 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   fontSize: '11px',
                   padding: '2px 8px',
                   borderRadius: '20px',
-                  background: 'rgba(20, 184, 166, 0.15)',
-                  color: '#2dd4bf',
-                  border: '1px solid rgba(20, 184, 166, 0.3)',
+                  background: '#E8E1F5',
+                  color: '#4C3B70',
+                  border: '1px solid #D5C8EA',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '4px'
+                  gap: '4px',
+                  fontWeight: 600
                 }}
               >
                 <Sparkles size={11} />
                 Gemini Powered
               </span>
             </div>
-            <p style={{ fontSize: '11px', color: '#94a3b8', margin: 0 }}>
+            <p style={{ fontSize: '12px', color: '#63736B', margin: 0, marginTop: '2px' }}>
               Personalized wellness queries &amp; campus counsellor referral
             </p>
           </div>
@@ -295,12 +297,13 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
             type="button"
             onClick={() => setApiKeyModalOpen(true)}
             style={{
-              background: apiKey ? 'rgba(99, 102, 241, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-              border: apiKey ? '1px solid #818cf8' : '1px solid rgba(255, 255, 255, 0.1)',
-              color: apiKey ? '#a5b4fc' : '#94a3b8',
+              background: apiKey ? '#E8E1F5' : '#FFFFFF',
+              border: apiKey ? '1px solid #D5C8EA' : '1px solid #E3E7DD',
+              color: apiKey ? '#4C3B70' : '#63736B',
               borderRadius: '8px',
               padding: '6px 10px',
               fontSize: '11px',
+              fontWeight: 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -309,7 +312,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
             }}
             title="Configure or enter your Gemini API Key"
           >
-            <Key size={13} />
+            <Key size={13} color="#245B52" />
             <span>{apiKey ? 'Gemini Key Configured' : 'Set Gemini Key'}</span>
           </button>
 
@@ -321,7 +324,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#94a3b8',
+                color: '#63736B',
                 cursor: 'pointer',
                 padding: '4px',
                 borderRadius: '6px'
@@ -343,8 +346,8 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(11, 17, 32, 0.92)',
-            backdropFilter: 'blur(8px)',
+            background: 'rgba(36, 51, 47, 0.4)',
+            backdropFilter: 'blur(4px)',
             zIndex: 30,
             display: 'flex',
             alignItems: 'center',
@@ -354,38 +357,38 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
         >
           <div
             style={{
-              background: '#131d33',
-              border: '1px solid rgba(99, 102, 241, 0.3)',
+              background: '#FFFFFF',
+              border: '1px solid #E3E7DD',
               borderRadius: '16px',
               padding: '24px',
               maxWidth: '440px',
               width: '100%',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.8)'
+              boxShadow: '0 20px 40px rgba(36, 51, 47, 0.15)'
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#a5b4fc' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#245B52' }}>
                 <Key size={18} />
-                <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#f8fafc', margin: 0 }}>
+                <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#24332F', margin: 0 }}>
                   Gemini API Configuration
                 </h4>
               </div>
               <button
                 type="button"
                 onClick={() => setApiKeyModalOpen(false)}
-                style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#63736B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
             </div>
 
-            <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '16px', lineHeight: '1.5' }}>
+            <p style={{ fontSize: '12px', color: '#63736B', marginBottom: '16px', lineHeight: '1.5' }}>
               Enter your Google Gemini API key to generate streaming responses powered by Gemini 3.8 Flash.
               If omitted, Drift seamlessly uses the grounded zero-failure generative synthesizer.
             </p>
 
             <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', fontSize: '11px', color: '#cbd5e1', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '11px', color: '#24332F', fontWeight: 600, marginBottom: '6px' }}>
                 Gemini API Key
               </label>
               <input
@@ -397,9 +400,9 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   width: '100%',
                   padding: '10px 12px',
                   borderRadius: '10px',
-                  background: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  color: '#f8fafc',
+                  background: '#FAFBF9',
+                  border: '1px solid #E3E7DD',
+                  color: '#24332F',
                   fontSize: '13px',
                   outline: 'none'
                 }}
@@ -413,9 +416,9 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   borderRadius: '8px',
                   fontSize: '11px',
                   marginBottom: '14px',
-                  background: keyStatus === 'active' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.15)',
-                  color: keyStatus === 'active' ? '#34d399' : '#fb7185',
-                  border: `1px solid ${keyStatus === 'active' ? 'rgba(16, 185, 129, 0.3)' : 'rgba(244, 63, 94, 0.3)'}`
+                  background: keyStatus === 'active' ? '#DDE9DF' : '#FDF2F0',
+                  color: keyStatus === 'active' ? '#245B52' : '#8B2C1F',
+                  border: `1px solid ${keyStatus === 'active' ? '#CBD4C2' : '#F0C4BC'}`
                 }}
               >
                 {keyMessage}
@@ -432,15 +435,8 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   setKeyStatus('env_default');
                   setKeyMessage('Reset to environment key.');
                 }}
-                style={{
-                  background: 'transparent',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  color: '#94a3b8',
-                  padding: '8px 14px',
-                  borderRadius: '8px',
-                  fontSize: '12px',
-                  cursor: 'pointer'
-                }}
+                className="btn-secondary"
+                style={{ fontSize: '12px' }}
               >
                 Clear / Reset
               </button>
@@ -448,19 +444,8 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                 type="button"
                 onClick={handleVerifyKey}
                 disabled={keyTesting}
-                style={{
-                  background: 'linear-gradient(135deg, #6366f1, #14b8a6)',
-                  border: 'none',
-                  color: '#ffffff',
-                  padding: '8px 16px',
-                  borderRadius: '8px',
-                  fontSize: '12px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}
+                className="btn-primary"
+                style={{ fontSize: '12px' }}
               >
                 {keyTesting ? <Loader2 size={14} className="spin-slow" /> : <CheckCircle size={14} />}
                 Test &amp; Save Key
@@ -479,7 +464,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
           display: 'flex',
           flexDirection: 'column',
           gap: '16px',
-          background: 'radial-gradient(ellipse at bottom, rgba(30, 41, 59, 0.4), rgba(11, 17, 32, 0.8))'
+          background: '#F6F5EF'
         }}
       >
         {messages.map((msg) => (
@@ -500,7 +485,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                 gap: '6px',
                 marginBottom: '4px',
                 fontSize: '11px',
-                color: '#94a3b8',
+                color: '#63736B',
                 paddingLeft: msg.role === 'user' ? 0 : '4px',
                 paddingRight: msg.role === 'user' ? '4px' : 0
               }}
@@ -508,17 +493,18 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
               {msg.role === 'user' ? (
                 <>
                   <span>You ({studentId})</span>
-                  <User size={12} color="#818cf8" />
+                  <User size={12} color="#245B52" />
                 </>
               ) : (
                 <>
-                  <Bot size={12} color="#2dd4bf" />
+                  <Bot size={12} color="#245B52" />
                   <span>Drift AI</span>
                   {msg.llm_status && (
                     <span
                       style={{
                         fontSize: '9px',
-                        background: 'rgba(255, 255, 255, 0.08)',
+                        background: '#E8E1F5',
+                        color: '#4C3B70',
                         padding: '1px 6px',
                         borderRadius: '10px'
                       }}
@@ -528,7 +514,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   )}
                 </>
               )}
-              <span style={{ fontSize: '10px', opacity: 0.6 }}>{msg.timestamp}</span>
+              <span style={{ fontSize: '10px', opacity: 0.7 }}>{msg.timestamp}</span>
             </div>
 
             {/* Bubble */}
@@ -542,17 +528,14 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                     : '18px 18px 18px 4px',
                 background:
                   msg.role === 'user'
-                    ? 'linear-gradient(135deg, #4f46e5, #4338ca)'
-                    : 'rgba(30, 41, 59, 0.85)',
-                color: '#f8fafc',
+                    ? '#245B52'
+                    : '#FFFFFF',
+                color: msg.role === 'user' ? '#FFFFFF' : '#24332F',
                 border:
                   msg.role === 'user'
-                    ? '1px solid rgba(99, 102, 241, 0.4)'
-                    : '1px solid rgba(255, 255, 255, 0.08)',
-                boxShadow:
-                  msg.role === 'user'
-                    ? '0 4px 16px rgba(79, 70, 229, 0.3)'
-                    : '0 4px 16px rgba(0, 0, 0, 0.3)',
+                    ? '1px solid #1E4E46'
+                    : '1px solid #E3E7DD',
+                boxShadow: '0 2px 8px rgba(36, 51, 47, 0.04)',
                 fontSize: '14px',
                 lineHeight: '1.6'
               }}
@@ -565,15 +548,15 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   style={{
                     marginTop: '10px',
                     paddingTop: '8px',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                    borderTop: msg.role === 'user' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid #E3E7DD',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
                     fontSize: '11px',
-                    color: '#94a3b8'
+                    color: msg.role === 'user' ? '#DDE9DF' : '#63736B'
                   }}
                 >
-                  <ShieldCheck size={13} color="#2dd4bf" />
+                  <ShieldCheck size={13} color={msg.role === 'user' ? '#DDE9DF' : '#245B52'} />
                   <span>{msg.data_basis}</span>
                 </div>
               )}
@@ -587,15 +570,15 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                       alignItems: 'center',
                       gap: '5px',
                       fontSize: '11px',
-                      fontWeight: '600',
-                      color: '#fbbf24',
+                      fontWeight: '700',
+                      color: msg.role === 'user' ? '#DDE9DF' : '#245B52',
                       marginBottom: '6px'
                     }}
                   >
                     <Lightbulb size={12} />
                     <span>Actionable Balance Suggestions:</span>
                   </div>
-                  <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '12px', color: '#cbd5e1' }}>
+                  <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '12px', color: msg.role === 'user' ? '#FFFFFF' : '#4A5B53' }}>
                     {msg.suggestions.map((s, idx) => (
                       <li key={idx} style={{ marginBottom: '4px' }}>{s}</li>
                     ))}
@@ -609,13 +592,13 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   style={{
                     marginTop: '10px',
                     fontSize: '12px',
-                    color: '#a5b4fc',
+                    color: msg.role === 'user' ? '#DDE9DF' : '#4C3B70',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px'
                   }}
                 >
-                  <Heart size={12} color="#f43f5e" />
+                  <Heart size={12} color="#C85A48" />
                   <span>{msg.encouragement}</span>
                 </div>
               )}
@@ -627,36 +610,36 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                 style={{
                   marginTop: '12px',
                   maxWidth: '88%',
-                  background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.12), rgba(99, 102, 241, 0.12))',
-                  border: '1px solid rgba(244, 63, 94, 0.35)',
+                  background: '#FFF8F6',
+                  border: '1px solid #E9B9A9',
                   borderRadius: '14px',
                   padding: '16px',
-                  boxShadow: '0 8px 24px rgba(244, 63, 94, 0.15)'
+                  boxShadow: '0 4px 14px rgba(233, 185, 169, 0.25)'
                 }}
               >
                 {/* Banner Header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                   <div
                     style={{
-                      background: 'rgba(244, 63, 94, 0.2)',
+                      background: '#E9B9A9',
                       padding: '6px',
                       borderRadius: '8px',
-                      color: '#fb7185'
+                      color: '#8B2C1F'
                     }}
                   >
                     <AlertCircle size={18} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: '14px', fontWeight: '700', color: '#fda4af', margin: 0 }}>
-                      🩺 Campus Counsellor Recommended
+                    <h4 style={{ fontSize: '14px', fontWeight: '700', color: '#8B2C1F', margin: 0 }}>
+                      Campus Counsellor Recommended
                     </h4>
-                    <span style={{ fontSize: '11px', color: '#94a3b8' }}>
+                    <span style={{ fontSize: '11px', color: '#63736B' }}>
                       {msg.counsellor_urgency === 'firm' ? 'Priority Support Protocol' : 'Personalized Support Referral'}
                     </span>
                   </div>
                 </div>
 
-                <p style={{ fontSize: '12px', color: '#e2e8f0', marginBottom: '12px', lineHeight: '1.5' }}>
+                <p style={{ fontSize: '12px', color: '#4A5B53', marginBottom: '12px', lineHeight: '1.5' }}>
                   {msg.counsellor_reason || 'We noticed shifts in your recent check-in patterns. You do not have to handle university stress alone.'}
                 </p>
 
@@ -664,31 +647,32 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                 {msg.counsellor_info && (
                   <div
                     style={{
-                      background: 'rgba(15, 23, 42, 0.7)',
+                      background: '#FFFFFF',
+                      border: '1px solid #E3E7DD',
                       borderRadius: '10px',
                       padding: '12px',
                       marginBottom: '12px',
                       fontSize: '11px',
-                      color: '#cbd5e1',
+                      color: '#24332F',
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
                       gap: '8px'
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <User size={13} color="#2dd4bf" />
+                      <User size={13} color="#245B52" />
                       <strong>{msg.counsellor_info.name}</strong>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <MapPin size={13} color="#a5b4fc" />
+                      <MapPin size={13} color="#4C3B70" />
                       <span>{msg.counsellor_info.location}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <Phone size={13} color="#fbbf24" />
+                      <Phone size={13} color="#245B52" />
                       <span>{msg.counsellor_info.phone}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <Clock size={13} color="#34d399" />
+                      <Clock size={13} color="#63736B" />
                       <span>{msg.counsellor_info.hours}</span>
                     </div>
                   </div>
@@ -699,15 +683,10 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   <button
                     type="button"
                     onClick={() => setBookingMsgId(bookingMsgId === msg.id ? null : msg.id)}
+                    className="btn-primary"
                     style={{
-                      background: 'linear-gradient(135deg, #14b8a6, #0d9488)',
-                      color: '#ffffff',
-                      border: 'none',
-                      borderRadius: '8px',
                       padding: '8px 12px',
                       fontSize: '12px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '6px'
@@ -720,9 +699,9 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                   <a
                     href="tel:988"
                     style={{
-                      background: 'rgba(244, 63, 94, 0.2)',
-                      color: '#fda4af',
-                      border: '1px solid rgba(244, 63, 94, 0.4)',
+                      background: '#FDF2F0',
+                      color: '#8B2C1F',
+                      border: '1px solid #F0C4BC',
                       borderRadius: '8px',
                       padding: '8px 12px',
                       fontSize: '12px',
@@ -739,11 +718,8 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
 
                   <a
                     href="mailto:counsellor@campus.edu?subject=Confidential%20Student%20Support%20Inquiry"
+                    className="btn-secondary"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      color: '#94a3b8',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      borderRadius: '8px',
                       padding: '8px 12px',
                       fontSize: '12px',
                       textDecoration: 'none',
@@ -763,29 +739,29 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                     style={{
                       marginTop: '14px',
                       padding: '14px',
-                      background: 'rgba(15, 23, 42, 0.9)',
+                      background: '#FFFFFF',
                       borderRadius: '10px',
-                      border: '1px solid rgba(20, 184, 166, 0.3)'
+                      border: '1px solid #E3E7DD'
                     }}
                   >
                     {confirmedBookings[msg.id] ? (
                       <div style={{ textAlign: 'center', padding: '10px' }}>
-                        <div style={{ color: '#34d399', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '6px' }}>
+                        <div style={{ color: '#245B52', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '6px' }}>
                           <CheckCircle size={20} />
                           <strong style={{ fontSize: '14px' }}>Session Reserved ({confirmedBookings[msg.id].booking_id})</strong>
                         </div>
-                        <p style={{ fontSize: '12px', color: '#cbd5e1' }}>
+                        <p style={{ fontSize: '12px', color: '#63736B' }}>
                           {confirmedBookings[msg.id].message}
                         </p>
                       </div>
                     ) : (
                       <>
-                        <h5 style={{ fontSize: '13px', fontWeight: '700', color: '#2dd4bf', marginBottom: '8px' }}>
+                        <h5 style={{ fontSize: '13px', fontWeight: '700', color: '#24332F', marginBottom: '8px' }}>
                           Request Confidential Campus Meeting
                         </h5>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '8px', marginBottom: '10px' }}>
                           <div>
-                            <label style={{ fontSize: '10px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>
+                            <label style={{ fontSize: '11px', color: '#63736B', display: 'block', marginBottom: '4px', fontWeight: 500 }}>
                               Preferred Slot
                             </label>
                             <select
@@ -795,10 +771,10 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                                 width: '100%',
                                 padding: '6px 8px',
                                 borderRadius: '6px',
-                                background: '#1e293b',
-                                color: '#f8fafc',
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                fontSize: '11px'
+                                background: '#FAFBF9',
+                                color: '#24332F',
+                                border: '1px solid #E3E7DD',
+                                fontSize: '12px'
                               }}
                             >
                               <option value="Tomorrow 10:00 AM">Tomorrow Morning (10:00 AM)</option>
@@ -809,7 +785,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                           </div>
 
                           <div>
-                            <label style={{ fontSize: '10px', color: '#94a3b8', display: 'block', marginBottom: '4px' }}>
+                            <label style={{ fontSize: '11px', color: '#63736B', display: 'block', marginBottom: '4px', fontWeight: 500 }}>
                               Urgency Level
                             </label>
                             <select
@@ -819,10 +795,10 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                                 width: '100%',
                                 padding: '6px 8px',
                                 borderRadius: '6px',
-                                background: '#1e293b',
-                                color: '#f8fafc',
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                fontSize: '11px'
+                                background: '#FAFBF9',
+                                color: '#24332F',
+                                border: '1px solid #E3E7DD',
+                                fontSize: '12px'
                               }}
                             >
                               <option value="Normal">Routine Check-in</option>
@@ -840,12 +816,12 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                             placeholder="Optional note (e.g. feeling stressed about exams)"
                             style={{
                               width: '100%',
-                              padding: '6px 10px',
+                              padding: '8px 10px',
                               borderRadius: '6px',
-                              background: '#1e293b',
-                              color: '#f8fafc',
-                              border: '1px solid rgba(255,255,255,0.1)',
-                              fontSize: '11px'
+                              background: '#FAFBF9',
+                              color: '#24332F',
+                              border: '1px solid #E3E7DD',
+                              fontSize: '12px'
                             }}
                           />
                         </div>
@@ -854,15 +830,9 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
                           type="button"
                           onClick={() => handleConfirmBooking(msg.id)}
                           disabled={bookingSubmitting}
+                          className="btn-primary"
                           style={{
-                            background: '#14b8a6',
-                            color: '#ffffff',
-                            border: 'none',
-                            padding: '6px 14px',
-                            borderRadius: '6px',
-                            fontSize: '11px',
-                            fontWeight: '600',
-                            cursor: 'pointer',
+                            fontSize: '12px',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '5px'
@@ -882,7 +852,7 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
 
         {/* Real-time Streaming typing indicator */}
         {loading && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#a5b4fc', fontSize: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#245B52', fontSize: '12px' }}>
             <Loader2 size={14} className="spin-slow" />
             <span>{streamingText || 'Drift is reviewing your baseline data...'}</span>
           </div>
@@ -894,9 +864,9 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
       {/* Quick Suggestion Chips */}
       <div
         style={{
-          padding: '8px 16px',
-          background: 'rgba(15, 23, 42, 0.7)',
-          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+          padding: '10px 16px',
+          background: '#FAFBF9',
+          borderTop: '1px solid #E3E7DD',
           display: 'flex',
           gap: '8px',
           overflowX: 'auto',
@@ -910,18 +880,25 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
             onClick={() => handleSendMessage(p.text)}
             disabled={loading}
             style={{
-              background: 'rgba(255, 255, 255, 0.04)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              color: '#cbd5e1',
+              background: '#FFFFFF',
+              border: '1px solid #E3E7DD',
+              color: '#24332F',
               borderRadius: '20px',
-              padding: '4px 12px',
-              fontSize: '11px',
+              padding: '6px 14px',
+              fontSize: '12px',
+              fontWeight: 500,
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
+              transition: 'all 0.15s ease',
               flexShrink: 0
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(99, 102, 241, 0.2)')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)')}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#DDE9DF';
+              e.currentTarget.style.borderColor = '#245B52';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#FFFFFF';
+              e.currentTarget.style.borderColor = '#E3E7DD';
+            }}
           >
             {p.text}
           </button>
@@ -936,8 +913,8 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
         }}
         style={{
           padding: '12px 16px',
-          background: '#0f172a',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          background: '#FFFFFF',
+          borderTop: '1px solid #E3E7DD',
           display: 'flex',
           alignItems: 'center',
           gap: '10px'
@@ -954,35 +931,29 @@ export default function RealtimeChatbot({ studentId, isFloating = false, onClose
             flex: 1,
             padding: '12px 16px',
             borderRadius: '12px',
-            background: 'rgba(30, 41, 59, 0.8)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            color: '#f8fafc',
+            background: '#FAFBF9',
+            border: '1px solid #E3E7DD',
+            color: '#24332F',
             fontSize: '13px',
             outline: 'none',
             transition: 'border-color 0.2s ease'
           }}
-          onFocus={(e) => (e.target.style.borderColor = 'rgba(99, 102, 241, 0.6)')}
-          onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.12)')}
+          onFocus={(e) => (e.target.style.borderColor = '#245B52')}
+          onBlur={(e) => (e.target.style.borderColor = '#E3E7DD')}
         />
 
         <button
           type="submit"
           disabled={loading || !input.trim()}
+          className="btn-primary"
           style={{
-            background: input.trim() && !loading ? 'linear-gradient(135deg, #6366f1, #14b8a6)' : 'rgba(255, 255, 255, 0.08)',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '12px',
             padding: '12px 18px',
+            opacity: input.trim() && !loading ? 1 : 0.6,
             cursor: input.trim() && !loading ? 'pointer' : 'not-allowed',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
-            fontWeight: '600',
-            fontSize: '13px',
-            transition: 'all 0.2s ease',
-            boxShadow: input.trim() && !loading ? '0 4px 14px rgba(99, 102, 241, 0.4)' : 'none'
+            gap: '6px'
           }}
         >
           {loading ? <Loader2 size={16} className="spin-slow" /> : <Send size={16} />}

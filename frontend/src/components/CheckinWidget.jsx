@@ -67,12 +67,12 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
   const factorOptions = ['Studies', 'Sleep', 'Screen', 'Social', 'Personal', 'Routine'];
 
   return (
-    <div className="drift-card drift-card-glow" id="checkin-widget" style={{ marginBottom: '24px' }}>
+    <div className="drift-card" id="checkin-widget" style={{ marginBottom: '24px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
         <div>
           <span className="badge badge-teal" style={{ marginBottom: '6px' }}>Daily Micro Check-in</span>
-          <h2 style={{ fontSize: '18px', fontWeight: '700' }}>Today's 25-Second Check-in</h2>
-          <p style={{ fontSize: '13px', color: '#94a3b8' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#24332F' }}>Today's 25-Second Check-in</h2>
+          <p style={{ fontSize: '13px', color: '#63736B' }}>
             {asOfDate ? `Logging for ${asOfDate}` : '3 core taps + 1 rotating micro-question'}
           </p>
         </div>
@@ -81,9 +81,9 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(16, 185, 129, 0.15)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
-            color: '#34d399',
+            background: '#DDE9DF',
+            border: '1px solid #CBD4C2',
+            color: '#245B52',
             padding: '6px 14px',
             borderRadius: '20px',
             fontSize: '13px',
@@ -97,7 +97,7 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
 
       {/* Row 1: Mood Tap */}
       <div style={{ marginBottom: '18px' }}>
-        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#cbd5e1', marginBottom: '8px' }}>
+        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#24332F', marginBottom: '8px' }}>
           1. How is your overall feeling today?
         </label>
         <div style={{ display: 'flex', gap: '10px' }}>
@@ -106,8 +106,13 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
             type="button"
             className={`tap-button ${mood === 5 ? 'active' : ''}`}
             onClick={() => setMood(5)}
+            style={{
+              borderColor: mood === 5 ? '#245B52' : '#E3E7DD',
+              background: mood === 5 ? '#DDE9DF' : '#FFFFFF',
+              color: mood === 5 ? '#245B52' : '#24332F'
+            }}
           >
-            <Smile size={24} color="#2dd4bf" />
+            <Smile size={24} color="#245B52" />
             <span>Good (5)</span>
           </button>
           <button
@@ -115,8 +120,13 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
             type="button"
             className={`tap-button ${mood === 3 ? 'active' : ''}`}
             onClick={() => setMood(3)}
+            style={{
+              borderColor: mood === 3 ? '#7B62A4' : '#E3E7DD',
+              background: mood === 3 ? '#E8E1F5' : '#FFFFFF',
+              color: mood === 3 ? '#4C3B70' : '#24332F'
+            }}
           >
-            <Meh size={24} color="#f59e0b" />
+            <Meh size={24} color="#7B62A4" />
             <span>Okay (3)</span>
           </button>
           <button
@@ -124,8 +134,13 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
             type="button"
             className={`tap-button ${mood === 1 ? 'active' : ''}`}
             onClick={() => setMood(1)}
+            style={{
+              borderColor: mood === 1 ? '#C85A48' : '#E3E7DD',
+              background: mood === 1 ? '#E9B9A9' : '#FFFFFF',
+              color: mood === 1 ? '#8B2C1F' : '#24332F'
+            }}
           >
-            <Frown size={24} color="#f43f5e" />
+            <Frown size={24} color="#C85A48" />
             <span>Not Good (1)</span>
           </button>
         </div>
@@ -134,10 +149,10 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
       {/* Row 2: Stress Scale (1-5) */}
       <div style={{ marginBottom: '18px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <label style={{ fontSize: '13px', fontWeight: '600', color: '#cbd5e1' }}>
-            2. Current Stress Pressure: <span style={{ color: '#2dd4bf' }}>Level {stress} / 5</span>
+          <label style={{ fontSize: '13px', fontWeight: '600', color: '#24332F' }}>
+            2. Current Stress Pressure: <span style={{ color: '#245B52' }}>Level {stress} / 5</span>
           </label>
-          <span style={{ fontSize: '12px', color: '#94a3b8' }}>
+          <span style={{ fontSize: '12px', color: '#63736B' }}>
             {stress <= 2 ? 'Low & Manageable' : stress === 3 ? 'Moderate' : 'High Demand'}
           </span>
         </div>
@@ -149,10 +164,15 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
               type="button"
               className={`tap-button ${stress === lvl ? 'active' : ''}`}
               onClick={() => setStress(lvl)}
-              style={{ padding: '10px 4px' }}
+              style={{
+                padding: '10px 4px',
+                background: stress === lvl ? '#245B52' : '#FFFFFF',
+                color: stress === lvl ? '#FFFFFF' : '#24332F',
+                borderColor: stress === lvl ? '#245B52' : '#E3E7DD'
+              }}
             >
-              <span style={{ fontSize: '16px' }}>{lvl}</span>
-              <span style={{ fontSize: '11px', color: '#94a3b8' }}>
+              <span style={{ fontSize: '16px', fontWeight: 600 }}>{lvl}</span>
+              <span style={{ fontSize: '11px', color: stress === lvl ? '#DDE9DF' : '#63736B' }}>
                 {lvl === 1 ? 'Calm' : lvl === 3 ? 'Medium' : lvl === 5 ? 'Peak' : ''}
               </span>
             </button>
@@ -162,7 +182,7 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
 
       {/* Row 3: Primary Factor */}
       <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#cbd5e1', marginBottom: '8px' }}>
+        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#24332F', marginBottom: '8px' }}>
           3. Primary contributing factor today:
         </label>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -178,9 +198,9 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
                 fontSize: '13px',
                 fontWeight: '500',
                 cursor: 'pointer',
-                border: mainFactor === factor ? '1px solid #14b8a6' : '1px solid rgba(255,255,255,0.08)',
-                background: mainFactor === factor ? 'rgba(20, 184, 166, 0.2)' : 'rgba(255,255,255,0.04)',
-                color: mainFactor === factor ? '#2dd4bf' : '#cbd5e1',
+                border: mainFactor === factor ? '1.5px solid #245B52' : '1px solid #E3E7DD',
+                background: mainFactor === factor ? '#DDE9DF' : '#FFFFFF',
+                color: mainFactor === factor ? '#245B52' : '#24332F',
                 transition: 'all 0.15s ease'
               }}
             >
@@ -193,27 +213,27 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
       {/* Row 4: Question Budget Rotating Micro-Question */}
       {microQuestion && microQuestion.selected_question && (
         <div style={{
-          background: 'rgba(99, 102, 241, 0.08)',
-          border: '1px solid rgba(99, 102, 241, 0.25)',
+          background: '#F9F7FD',
+          border: '1px solid #E8E1F5',
           borderRadius: '14px',
           padding: '16px',
           marginBottom: '20px'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontSize: '12px', fontWeight: '700', color: '#a5b4fc', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '12px', fontWeight: '700', color: '#4C3B70', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Rotating Micro-Question ({microQuestion.selected_question.title})
             </span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#94a3b8' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#63736B' }}>
               <Clock size={14} />
               <span>~5 seconds</span>
             </div>
           </div>
 
-          <p style={{ fontSize: '14px', fontWeight: '600', color: '#ffffff', marginBottom: '6px' }}>
+          <p style={{ fontSize: '14px', fontWeight: '600', color: '#24332F', marginBottom: '6px' }}>
             {microQuestion.selected_question.prompt}
           </p>
 
-          <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '14px', fontStyle: 'italic' }}>
+          <p style={{ fontSize: '12px', color: '#63736B', marginBottom: '14px', fontStyle: 'italic' }}>
             Reason asked: {microQuestion.reason_asked}
           </p>
 
@@ -232,9 +252,9 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
                     fontSize: '12px',
                     fontWeight: '600',
                     cursor: 'pointer',
-                    border: microValue === opt.value ? '1px solid #6366f1' : '1px solid rgba(255,255,255,0.08)',
-                    background: microValue === opt.value ? 'rgba(99, 102, 241, 0.3)' : 'rgba(255,255,255,0.04)',
-                    color: microValue === opt.value ? '#ffffff' : '#cbd5e1'
+                    border: microValue === opt.value ? '1.5px solid #245B52' : '1px solid #E3E7DD',
+                    background: microValue === opt.value ? '#DDE9DF' : '#FFFFFF',
+                    color: microValue === opt.value ? '#245B52' : '#24332F'
                   }}
                 >
                   {opt.label}
@@ -244,8 +264,8 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
           ) : (
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                <span style={{ fontSize: '13px', color: '#cbd5e1' }}>Value: {microValue} {microQuestion.selected_question.unit}</span>
-                <span style={{ fontSize: '12px', color: '#94a3b8' }}>Range: {microQuestion.selected_question.min} - {microQuestion.selected_question.max}</span>
+                <span style={{ fontSize: '13px', color: '#24332F', fontWeight: 600 }}>Value: {microValue} {microQuestion.selected_question.unit}</span>
+                <span style={{ fontSize: '12px', color: '#63736B' }}>Range: {microQuestion.selected_question.min} - {microQuestion.selected_question.max}</span>
               </div>
               <input
                 type="range"
@@ -254,7 +274,7 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
                 step={microQuestion.selected_question.step || 0.5}
                 value={microValue}
                 onChange={(e) => setMicroValue(parseFloat(e.target.value))}
-                style={{ width: '100%', accentColor: '#6366f1' }}
+                style={{ width: '100%', accentColor: '#245B52' }}
               />
             </div>
           )}
@@ -263,7 +283,7 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
 
       {/* Submit Button */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontSize: '12px', color: '#94a3b8' }}>
+        <span style={{ fontSize: '12px', color: '#63736B' }}>
           Takes ~25s • Never silently invents data
         </span>
         <button
@@ -279,7 +299,7 @@ export default function CheckinWidget({ studentId, asOfDate, onCheckinComplete, 
       </div>
 
       {submittedMessage && (
-        <div style={{ marginTop: '12px', fontSize: '13px', color: '#34d399', textAlign: 'right' }}>
+        <div style={{ marginTop: '12px', fontSize: '13px', color: '#245B52', fontWeight: 500, textAlign: 'right' }}>
           {submittedMessage}
         </div>
       )}

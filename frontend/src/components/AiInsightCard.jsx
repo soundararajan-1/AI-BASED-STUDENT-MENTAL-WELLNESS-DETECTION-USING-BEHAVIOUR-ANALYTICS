@@ -18,44 +18,45 @@ export default function AiInsightCard({ insightData }) {
   };
 
   return (
-    <div className="drift-card drift-card-glow" id="ai-insight-card">
+    <div className="drift-card" id="ai-insight-card">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
-            background: 'rgba(99, 102, 241, 0.2)',
+            background: '#E8E1F5',
             padding: '8px',
             borderRadius: '10px',
-            color: '#a5b4fc'
+            color: '#4C3B70'
           }}>
             <Sparkles size={20} />
           </div>
           <div>
             <span className="badge badge-indigo" style={{ marginBottom: '4px' }}>Ground-Truth Reflection</span>
-            <h3 style={{ fontSize: '16px', fontWeight: '700' }}>AI Wellness Insight with Receipts</h3>
+            <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#24332F' }}>AI Wellness Insight with Receipts</h3>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#94a3b8' }}>
-          <Shield size={14} color="#14b8a6" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#63736B' }}>
+          <Shield size={14} color="#245B52" />
           <span>Validated (0% Hallucination)</span>
         </div>
       </div>
 
       <div style={{
-        background: 'rgba(255, 255, 255, 0.03)',
+        background: '#FAFBF9',
         borderRadius: '12px',
         padding: '16px',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        border: '1px solid #E3E7DD',
         marginBottom: '16px',
         lineHeight: '1.6',
         fontSize: '14px',
-        color: '#f8fafc'
+        color: '#24332F'
       }}>
         <p style={{ marginBottom: '12px' }}>
           <span
             className="receipt-clickable-sentence"
             title="Click to view numerical evidence receipt"
             onClick={() => handleSentenceClick('shift')}
+            style={{ borderBottom: '1.5px dashed #4C3B70', cursor: 'pointer', color: '#24332F' }}
           >
             {what_changed}
           </span>
@@ -66,6 +67,7 @@ export default function AiInsightCard({ insightData }) {
             className="receipt-clickable-sentence"
             title="Click to view numerical evidence receipt"
             onClick={() => handleSentenceClick('pattern')}
+            style={{ borderBottom: '1.5px dashed #4C3B70', cursor: 'pointer', color: '#24332F' }}
           >
             {pattern}
           </span>{' '}
@@ -73,13 +75,14 @@ export default function AiInsightCard({ insightData }) {
             className="receipt-clickable-sentence"
             title="Click to view numerical evidence receipt"
             onClick={() => handleSentenceClick('drift')}
+            style={{ borderBottom: '1.5px dashed #4C3B70', cursor: 'pointer', color: '#24332F' }}
           >
             {factors}
           </span>
         </p>
 
         {support && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#2dd4bf', fontSize: '13px', marginTop: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#245B52', fontSize: '13px', marginTop: '10px', fontWeight: 500 }}>
             <HeartHandshake size={16} />
             <em>{support}</em>
           </div>
@@ -89,19 +92,20 @@ export default function AiInsightCard({ insightData }) {
       {/* Micro-suggestions */}
       {suggestions && suggestions.length > 0 && (
         <div style={{ marginBottom: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: '700', color: '#94a3b8', marginBottom: '8px' }}>
-            <Lightbulb size={14} color="#f59e0b" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: '700', color: '#63736B', marginBottom: '8px' }}>
+            <Lightbulb size={14} color="#245B52" />
             <span>Gentle Micro-Adjustments:</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {suggestions.map((s, idx) => (
               <div key={idx} style={{
-                fontSize: '12px',
-                color: '#cbd5e1',
-                padding: '8px 12px',
+                fontSize: '13px',
+                color: '#24332F',
+                padding: '9px 12px',
                 borderRadius: '8px',
-                background: 'rgba(255, 255, 255, 0.02)',
-                borderLeft: '2px solid #14b8a6'
+                background: '#FFFFFF',
+                border: '1px solid #E3E7DD',
+                borderLeft: '3px solid #245B52'
               }}>
                 {s}
               </div>
@@ -110,7 +114,7 @@ export default function AiInsightCard({ insightData }) {
         </div>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', fontSize: '11px', color: '#94a3b8' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', fontSize: '11px', color: '#63736B' }}>
         <span>Tip: Click underlined text to inspect the underlying numerical facts.</span>
         <button
           type="button"
@@ -118,7 +122,8 @@ export default function AiInsightCard({ insightData }) {
           style={{
             background: 'none',
             border: 'none',
-            color: '#a5b4fc',
+            color: '#245B52',
+            fontWeight: 600,
             cursor: 'pointer',
             textDecoration: 'underline',
             fontSize: '11px'
@@ -131,47 +136,48 @@ export default function AiInsightCard({ insightData }) {
       {/* Evidence Receipt Modal / Drawer */}
       {selectedReceipt && (
         <div className="modal-overlay" style={{ zIndex: 120 }}>
-          <div className="modal-content" style={{ maxWidth: '480px' }}>
+          <div className="modal-content" style={{ maxWidth: '480px', background: '#FFFFFF', border: '1px solid #E3E7DD', boxShadow: '0 12px 36px rgba(36, 51, 47, 0.12)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <FileCheck size={20} color="#2dd4bf" />
-                <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>Evidence Receipt</h4>
+                <FileCheck size={20} color="#245B52" />
+                <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#24332F' }}>Evidence Receipt</h4>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedReceipt(null)}
-                style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#63736B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
             </div>
 
             <div style={{
-              background: 'rgba(20, 184, 166, 0.08)',
-              border: '1px solid rgba(20, 184, 166, 0.25)',
+              background: '#DDE9DF',
+              border: '1px solid #CBD4C2',
               borderRadius: '10px',
               padding: '12px',
               fontSize: '13px',
-              color: '#2dd4bf',
+              color: '#245B52',
               marginBottom: '14px',
-              fontStyle: 'italic'
+              fontStyle: 'italic',
+              fontWeight: 500
             }}>
               "{selectedReceipt.sentence}"
             </div>
 
             <div style={{ marginBottom: '14px' }}>
-              <span style={{ fontSize: '11px', fontWeight: '700', color: '#94a3b8', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '11px', fontWeight: '700', color: '#63736B', textTransform: 'uppercase' }}>
                 Underlying Numerical Proof:
               </span>
               <ul style={{ listStyleType: 'none', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {selectedReceipt.evidence?.map((item, idx) => (
                   <li key={idx} style={{
                     fontSize: '13px',
-                    color: '#f8fafc',
-                    background: 'rgba(255, 255, 255, 0.04)',
+                    color: '#24332F',
+                    background: '#F6F5EF',
                     padding: '8px 10px',
                     borderRadius: '6px',
-                    borderLeft: '2px solid #2dd4bf'
+                    borderLeft: '3px solid #245B52'
                   }}>
                     {item}
                   </li>
@@ -179,7 +185,7 @@ export default function AiInsightCard({ insightData }) {
               </ul>
             </div>
 
-            <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '16px', lineHeight: '1.4' }}>
+            <div style={{ fontSize: '11px', color: '#63736B', marginBottom: '16px', lineHeight: '1.4' }}>
               Every sentence rendered by Drift must validate against real logged metrics.
               Hallucinated numbers and clinical diagnostic words are blocked by the rule validator.
             </div>

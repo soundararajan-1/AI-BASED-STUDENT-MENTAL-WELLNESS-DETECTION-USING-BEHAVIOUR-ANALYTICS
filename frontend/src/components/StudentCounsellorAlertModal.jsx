@@ -146,7 +146,10 @@ export default function StudentCounsellorAlertModal({
           width: '100%',
           maxHeight: '90vh',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          background: '#FFFFFF',
+          border: '1px solid #E3E7DD',
+          boxShadow: '0 20px 45px rgba(36, 51, 47, 0.15)'
         }}
       >
         {/* Header */}
@@ -156,16 +159,17 @@ export default function StudentCounsellorAlertModal({
               style={{
                 background:
                   activeAlert?.status === 'accepted'
-                    ? 'rgba(16, 185, 129, 0.2)'
+                    ? '#DDE9DF'
                     : activeAlert?.status === 'open'
-                    ? 'rgba(239, 68, 68, 0.2)'
-                    : 'rgba(244, 63, 94, 0.15)',
+                    ? '#E9B9A9'
+                    : '#FAFBF9',
                 color:
                   activeAlert?.status === 'accepted'
-                    ? '#34d399'
+                    ? '#245B52'
                     : activeAlert?.status === 'open'
-                    ? '#f87171'
-                    : '#fda4af',
+                    ? '#8B2C1F'
+                    : '#245B52',
+                border: '1px solid #E3E7DD',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -173,18 +177,18 @@ export default function StudentCounsellorAlertModal({
               {activeAlert?.status === 'accepted' ? (
                 <HeartHandshake size={24} />
               ) : (
-                <Radio size={24} className={activeAlert?.status === 'open' ? 'pulse-anim' : ''} />
+                <Radio size={24} />
               )}
             </div>
             <div>
-              <h3 style={{ fontSize: '18px', fontWeight: '700' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#24332F' }}>
                 {activeAlert?.status === 'accepted'
                   ? 'Live 1-on-1 Counsellor Consultation'
                   : activeAlert?.status === 'open'
                   ? 'Distress Alert Broadcast Active'
                   : 'Raise Campus Counsellor Alert'}
               </h3>
-              <p style={{ fontSize: '12px', color: '#94a3b8' }}>
+              <p style={{ fontSize: '12px', color: '#63736B' }}>
                 {activeAlert?.status === 'accepted'
                   ? `Connected with ${activeAlert.accepted_by || 'Campus Counsellor'}`
                   : activeAlert?.status === 'open'
@@ -196,7 +200,7 @@ export default function StudentCounsellorAlertModal({
           <button
             type="button"
             onClick={onClose}
-            style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '4px' }}
+            style={{ background: 'none', border: 'none', color: '#63736B', cursor: 'pointer', padding: '4px' }}
           >
             <X size={20} />
           </button>
@@ -209,8 +213,8 @@ export default function StudentCounsellorAlertModal({
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div
                 style={{
-                  background: 'rgba(16, 185, 129, 0.1)',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  background: '#DDE9DF',
+                  border: '1px solid #CBD4C2',
                   borderRadius: '12px',
                   padding: '12px 16px',
                   marginBottom: '14px',
@@ -221,10 +225,10 @@ export default function StudentCounsellorAlertModal({
                 }}
               >
                 <div>
-                  <div style={{ fontWeight: 700, color: '#34d399', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ fontWeight: 700, color: '#245B52', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <CheckCircle size={14} /> Active Session • Topic: {activeAlert.topic}
                   </div>
-                  <div style={{ color: '#cbd5e1', fontSize: '11px', marginTop: '2px' }}>
+                  <div style={{ color: '#4A5B53', fontSize: '11px', marginTop: '2px' }}>
                     Consulting with: <strong>{activeAlert.accepted_by}</strong> (Confidential & Private)
                   </div>
                 </div>
@@ -232,9 +236,9 @@ export default function StudentCounsellorAlertModal({
                   type="button"
                   onClick={handleResolveAlert}
                   style={{
-                    background: 'rgba(239, 68, 68, 0.2)',
-                    border: '1px solid rgba(239, 68, 68, 0.4)',
-                    color: '#f87171',
+                    background: '#FFFFFF',
+                    border: '1px solid #F0C4BC',
+                    color: '#8B2C1F',
                     padding: '6px 12px',
                     borderRadius: '8px',
                     fontSize: '11px',
@@ -249,8 +253,8 @@ export default function StudentCounsellorAlertModal({
               {/* Chat Message Thread */}
               <div
                 style={{
-                  background: 'rgba(10, 15, 29, 0.6)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: '#F6F5EF',
+                  border: '1px solid #E3E7DD',
                   borderRadius: '12px',
                   padding: '16px',
                   minHeight: '260px',
@@ -263,8 +267,8 @@ export default function StudentCounsellorAlertModal({
                 }}
               >
                 {messages.length === 0 ? (
-                  <div style={{ textAlign: 'center', color: '#94a3b8', fontSize: '13px', margin: 'auto' }}>
-                    <MessageSquare size={28} style={{ opacity: 0.5, marginBottom: '8px' }} />
+                  <div style={{ textAlign: 'center', color: '#63736B', fontSize: '13px', margin: 'auto' }}>
+                    <MessageSquare size={28} style={{ opacity: 0.5, marginBottom: '8px', color: '#245B52' }} />
                     <div>Connected! Say hello to your counsellor. They are here to support you.</div>
                   </div>
                 ) : (
@@ -284,7 +288,7 @@ export default function StudentCounsellorAlertModal({
                         <div
                           style={{
                             fontSize: '10px',
-                            color: '#94a3b8',
+                            color: '#63736B',
                             marginBottom: '2px',
                             padding: '0 4px'
                           }}
@@ -295,15 +299,16 @@ export default function StudentCounsellorAlertModal({
                         <div
                           style={{
                             background: isMe
-                              ? 'linear-gradient(135deg, #14b8a6, #0d9488)'
-                              : 'linear-gradient(135deg, #4f46e5, #4338ca)',
-                            color: '#ffffff',
+                              ? '#245B52'
+                              : '#FFFFFF',
+                            color: isMe ? '#FFFFFF' : '#24332F',
+                            border: isMe ? '1px solid #1E4E46' : '1px solid #E3E7DD',
                             padding: '10px 14px',
                             borderRadius: isMe ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
                             fontSize: '13px',
                             lineHeight: '1.45',
                             wordBreak: 'break-word',
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
                           }}
                         >
                           {m.message}
@@ -324,14 +329,16 @@ export default function StudentCounsellorAlertModal({
                   onChange={(e) => setNewMessage(e.target.value)}
                   style={{
                     flex: 1,
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    background: '#FFFFFF',
+                    border: '1px solid #E3E7DD',
                     borderRadius: '10px',
                     padding: '10px 14px',
-                    color: '#fff',
+                    color: '#24332F',
                     fontSize: '13px',
                     outline: 'none'
                   }}
+                  onFocus={(e) => (e.target.style.borderColor = '#245B52')}
+                  onBlur={(e) => (e.target.style.borderColor = '#E3E7DD')}
                 />
                 <button
                   type="submit"
@@ -359,30 +366,30 @@ export default function StudentCounsellorAlertModal({
                   width: '64px',
                   height: '64px',
                   borderRadius: '50%',
-                  background: 'rgba(239, 68, 68, 0.15)',
-                  border: '2px solid rgba(239, 68, 68, 0.5)',
+                  background: '#FFF8F6',
+                  border: '2px solid #E9B9A9',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 16px',
-                  color: '#f87171'
+                  color: '#8B2C1F'
                 }}
               >
                 <Radio size={32} />
               </div>
 
-              <h4 style={{ fontSize: '17px', fontWeight: 700, color: '#f87171', marginBottom: '8px' }}>
+              <h4 style={{ fontSize: '17px', fontWeight: 700, color: '#8B2C1F', marginBottom: '8px' }}>
                 Broadcasting to All Campus Counsellors
               </h4>
-              <p style={{ fontSize: '13px', color: '#cbd5e1', maxWidth: '440px', margin: '0 auto 20px', lineHeight: 1.5 }}>
+              <p style={{ fontSize: '13px', color: '#63736B', maxWidth: '440px', margin: '0 auto 20px', lineHeight: 1.5 }}>
                 Your request has been prioritized and broadcast to on-duty counsellors. The moment any counsellor accepts,
                 this modal will automatically switch to a private 1-on-1 live chat.
               </p>
 
               <div
                 style={{
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: '#FAFBF9',
+                  border: '1px solid #E3E7DD',
                   borderRadius: '12px',
                   padding: '14px',
                   textAlign: 'left',
@@ -392,34 +399,34 @@ export default function StudentCounsellorAlertModal({
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: '#94a3b8' }}>Alert ID:</span>
-                  <span style={{ fontFamily: 'monospace', color: '#2dd4bf' }}>{activeAlert.alert_id}</span>
+                  <span style={{ color: '#63736B' }}>Alert ID:</span>
+                  <span style={{ fontFamily: 'monospace', color: '#245B52', fontWeight: 600 }}>{activeAlert.alert_id}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: '#94a3b8' }}>Urgency:</span>
+                  <span style={{ color: '#63736B' }}>Urgency:</span>
                   <span
                     style={{
                       textTransform: 'uppercase',
                       fontWeight: 700,
                       color:
                         activeAlert.urgency === 'urgent'
-                          ? '#f87171'
+                          ? '#8B2C1F'
                           : activeAlert.urgency === 'moderate'
-                          ? '#fbbf24'
-                          : '#34d399'
+                          ? '#7A5408'
+                          : '#245B52'
                     }}
                   >
                     {activeAlert.urgency}
                   </span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: '#94a3b8' }}>Topic:</span>
-                  <span style={{ color: '#fff', fontWeight: 600 }}>{activeAlert.topic}</span>
+                  <span style={{ color: '#63736B' }}>Topic:</span>
+                  <span style={{ color: '#24332F', fontWeight: 600 }}>{activeAlert.topic}</span>
                 </div>
                 {activeAlert.notes && (
-                  <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                    <span style={{ color: '#94a3b8' }}>Notes: </span>
-                    <span style={{ color: '#e2e8f0' }}>{activeAlert.notes}</span>
+                  <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid #E3E7DD' }}>
+                    <span style={{ color: '#63736B' }}>Notes: </span>
+                    <span style={{ color: '#24332F' }}>{activeAlert.notes}</span>
                   </div>
                 )}
               </div>
@@ -428,15 +435,8 @@ export default function StudentCounsellorAlertModal({
                 <button
                   type="button"
                   onClick={handleResolveAlert}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    color: '#94a3b8',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    fontSize: '12px',
-                    cursor: 'pointer'
-                  }}
+                  className="btn-secondary"
+                  style={{ fontSize: '12px', padding: '8px 16px' }}
                 >
                   Withdraw Request
                 </button>
@@ -447,12 +447,12 @@ export default function StudentCounsellorAlertModal({
             <form onSubmit={handleRaiseAlert} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div
                 style={{
-                  background: 'rgba(244, 63, 94, 0.08)',
-                  border: '1px solid rgba(244, 63, 94, 0.25)',
+                  background: '#FFF8F6',
+                  border: '1px solid #E9B9A9',
                   borderRadius: '10px',
                   padding: '12px 14px',
                   fontSize: '12px',
-                  color: '#fda4af',
+                  color: '#8B2C1F',
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: '8px'
@@ -468,9 +468,9 @@ export default function StudentCounsellorAlertModal({
               {errorMsg && (
                 <div
                   style={{
-                    background: 'rgba(239, 68, 68, 0.15)',
-                    border: '1px solid rgba(239, 68, 68, 0.3)',
-                    color: '#fca5a5',
+                    background: '#FDF2F0',
+                    border: '1px solid #F0C4BC',
+                    color: '#8B2C1F',
                     padding: '10px 14px',
                     borderRadius: '8px',
                     fontSize: '12px'
@@ -482,22 +482,22 @@ export default function StudentCounsellorAlertModal({
 
               {/* Urgency Selector */}
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#24332F', marginBottom: '6px' }}>
                   Priority Level
                 </label>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                   {[
-                    { id: 'mild', label: 'Mild', desc: 'Advice & Planning', color: '#34d399' },
-                    { id: 'moderate', label: 'Moderate', desc: 'Feeling Overwhelmed', color: '#fbbf24' },
-                    { id: 'urgent', label: 'Urgent', desc: 'Need immediate help', color: '#f87171' }
+                    { id: 'mild', label: 'Mild', desc: 'Advice & Planning', activeBg: '#DDE9DF', activeBorder: '#245B52', color: '#245B52' },
+                    { id: 'moderate', label: 'Moderate', desc: 'Feeling Overwhelmed', activeBg: '#FAF5E8', activeBorder: '#B48528', color: '#7A5408' },
+                    { id: 'urgent', label: 'Urgent', desc: 'Need immediate help', activeBg: '#FFF8F6', activeBorder: '#E9B9A9', color: '#8B2C1F' }
                   ].map((lvl) => (
                     <button
                       key={lvl.id}
                       type="button"
                       onClick={() => setUrgency(lvl.id)}
                       style={{
-                        background: urgency === lvl.id ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.02)',
-                        border: urgency === lvl.id ? `2px solid ${lvl.color}` : '1px solid rgba(255, 255, 255, 0.08)',
+                        background: urgency === lvl.id ? lvl.activeBg : '#FFFFFF',
+                        border: urgency === lvl.id ? `2px solid ${lvl.activeBorder}` : '1px solid #E3E7DD',
                         borderRadius: '10px',
                         padding: '10px',
                         textAlign: 'left',
@@ -506,7 +506,7 @@ export default function StudentCounsellorAlertModal({
                       }}
                     >
                       <div style={{ fontSize: '12px', fontWeight: 700, color: lvl.color }}>{lvl.label}</div>
-                      <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>{lvl.desc}</div>
+                      <div style={{ fontSize: '10px', color: '#63736B', marginTop: '2px' }}>{lvl.desc}</div>
                     </button>
                   ))}
                 </div>
@@ -514,7 +514,7 @@ export default function StudentCounsellorAlertModal({
 
               {/* Topic Selector */}
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#24332F', marginBottom: '6px' }}>
                   What are you experiencing?
                 </label>
                 <select
@@ -522,31 +522,31 @@ export default function StudentCounsellorAlertModal({
                   onChange={(e) => setTopic(e.target.value)}
                   style={{
                     width: '100%',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    background: '#FAFBF9',
+                    border: '1px solid #E3E7DD',
                     borderRadius: '8px',
                     padding: '10px 12px',
-                    color: '#fff',
+                    color: '#24332F',
                     fontSize: '13px',
                     outline: 'none'
                   }}
                 >
-                  <option value="Academic Stress & Overwhelm" style={{ background: '#131d33', color: '#fff' }}>
+                  <option value="Academic Stress & Overwhelm">
                     Academic Stress & Overwhelm
                   </option>
-                  <option value="Sleep Deprivation & Exhaustion" style={{ background: '#131d33', color: '#fff' }}>
+                  <option value="Sleep Deprivation & Exhaustion">
                     Sleep Deprivation & Exhaustion
                   </option>
-                  <option value="Anxiety & Panic Symptoms" style={{ background: '#131d33', color: '#fff' }}>
+                  <option value="Anxiety & Panic Symptoms">
                     Anxiety & Panic Symptoms
                   </option>
-                  <option value="Isolation & Feeling Disconnected" style={{ background: '#131d33', color: '#fff' }}>
+                  <option value="Isolation & Feeling Disconnected">
                     Isolation & Feeling Disconnected
                   </option>
-                  <option value="Personal / Family Emergency" style={{ background: '#131d33', color: '#fff' }}>
+                  <option value="Personal / Family Emergency">
                     Personal / Family Emergency
                   </option>
-                  <option value="General Check-in & Guidance" style={{ background: '#131d33', color: '#fff' }}>
+                  <option value="General Check-in & Guidance">
                     General Check-in & Guidance
                   </option>
                 </select>
@@ -554,7 +554,7 @@ export default function StudentCounsellorAlertModal({
 
               {/* Notes */}
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#24332F', marginBottom: '6px' }}>
                   Additional Notes (Optional)
                 </label>
                 <textarea
@@ -564,15 +564,17 @@ export default function StudentCounsellorAlertModal({
                   placeholder="Share any context that helps the counsellor prepare (e.g. have an exam tomorrow, haven't slept in two days)..."
                   style={{
                     width: '100%',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    background: '#FAFBF9',
+                    border: '1px solid #E3E7DD',
                     borderRadius: '8px',
                     padding: '10px 12px',
-                    color: '#fff',
+                    color: '#24332F',
                     fontSize: '13px',
                     outline: 'none',
                     resize: 'vertical'
                   }}
+                  onFocus={(e) => (e.target.style.borderColor = '#245B52')}
+                  onBlur={(e) => (e.target.style.borderColor = '#E3E7DD')}
                 />
               </div>
 
@@ -588,20 +590,10 @@ export default function StudentCounsellorAlertModal({
                 <button
                   type="submit"
                   disabled={submitting}
+                  className="btn-primary"
                   style={{
                     flex: 2,
-                    background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-                    border: 'none',
-                    color: '#fff',
-                    borderRadius: '8px',
                     padding: '10px 16px',
-                    fontWeight: 700,
-                    fontSize: '13px',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
                     opacity: submitting ? 0.7 : 1
                   }}
                 >

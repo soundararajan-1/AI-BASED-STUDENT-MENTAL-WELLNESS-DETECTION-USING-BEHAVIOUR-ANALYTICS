@@ -6,7 +6,7 @@ export default function FingerprintRadar({ radarData }) {
   if (!radarData || radarData.length === 0) {
     return (
       <div className="drift-card" style={{ height: '360px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: '#94a3b8' }}>Awaiting enough check-ins to build fingerprint radar.</p>
+        <p style={{ color: '#63736B' }}>Awaiting enough check-ins to build fingerprint radar.</p>
       </div>
     );
   }
@@ -16,18 +16,18 @@ export default function FingerprintRadar({ radarData }) {
       const data = payload[0].payload;
       return (
         <div style={{
-          background: '#0f172a',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
+          background: '#FFFFFF',
+          border: '1px solid #E3E7DD',
           borderRadius: '10px',
           padding: '10px 14px',
           fontSize: '12px',
-          color: '#f8fafc',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.6)'
+          color: '#24332F',
+          boxShadow: '0 4px 16px rgba(36, 51, 47, 0.08)'
         }}>
-          <p style={{ fontWeight: '700', marginBottom: '6px', color: '#2dd4bf' }}>{data.metric}</p>
-          <p style={{ color: '#a5b4fc' }}>Recent Value: {data.raw_recent}</p>
-          <p style={{ color: '#2dd4bf' }}>Personal Baseline Median: {data.raw_median}</p>
-          <p style={{ color: '#94a3b8' }}>Last Week Ghost: {data.raw_ghost}</p>
+          <p style={{ fontWeight: '700', marginBottom: '6px', color: '#245B52' }}>{data.metric}</p>
+          <p style={{ color: '#4C3B70', fontWeight: 500 }}>Recent Value: {data.raw_recent}</p>
+          <p style={{ color: '#245B52', fontWeight: 500 }}>Personal Baseline Median: {data.raw_median}</p>
+          <p style={{ color: '#63736B' }}>Last Week Ghost: {data.raw_ghost}</p>
         </div>
       );
     }
@@ -39,10 +39,10 @@ export default function FingerprintRadar({ radarData }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
         <div>
           <span className="badge badge-indigo" style={{ marginBottom: '4px' }}>Behavioral Fingerprint</span>
-          <h3 style={{ fontSize: '16px', fontWeight: '700' }}>7-Axis Personal Normal vs Today</h3>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#24332F' }}>7-Axis Personal Normal vs Today</h3>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#94a3b8' }}>
-          <Target size={16} color="#2dd4bf" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#63736B' }}>
+          <Target size={16} color="#245B52" />
           <span>Learned Normal Band</span>
         </div>
       </div>
@@ -50,10 +50,10 @@ export default function FingerprintRadar({ radarData }) {
       <div style={{ flex: 1, minHeight: '300px', width: '100%' }}>
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
-            <PolarGrid stroke="rgba(255, 255, 255, 0.1)" />
+            <PolarGrid stroke="#E3E7DD" />
             <PolarAngleAxis
               dataKey="metric"
-              tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }}
+              tick={{ fill: '#24332F', fontSize: 11, fontWeight: 600 }}
             />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
             
@@ -61,9 +61,9 @@ export default function FingerprintRadar({ radarData }) {
             <Radar
               name="Last Week (Ghost)"
               dataKey="last_week"
-              stroke="#64748b"
-              fill="#64748b"
-              fillOpacity={0.12}
+              stroke="#A8B5A5"
+              fill="#DDE9DF"
+              fillOpacity={0.3}
               strokeDasharray="4 4"
             />
             
@@ -71,9 +71,9 @@ export default function FingerprintRadar({ radarData }) {
             <Radar
               name="Personal Baseline"
               dataKey="baseline"
-              stroke="#14b8a6"
-              fill="#14b8a6"
-              fillOpacity={0.25}
+              stroke="#245B52"
+              fill="#245B52"
+              fillOpacity={0.2}
               strokeWidth={2}
             />
 
@@ -81,16 +81,16 @@ export default function FingerprintRadar({ radarData }) {
             <Radar
               name="Recent / Today"
               dataKey="current"
-              stroke="#818cf8"
-              fill="#6366f1"
-              fillOpacity={0.35}
+              stroke="#7B62A4"
+              fill="#E8E1F5"
+              fillOpacity={0.45}
               strokeWidth={2}
             />
             
             <Tooltip content={<CustomTooltip />} />
             <Legend
               verticalAlign="bottom"
-              wrapperStyle={{ fontSize: '11px', paddingTop: '10px', color: '#94a3b8' }}
+              wrapperStyle={{ fontSize: '11px', paddingTop: '10px', color: '#63736B' }}
             />
           </RadarChart>
         </ResponsiveContainer>

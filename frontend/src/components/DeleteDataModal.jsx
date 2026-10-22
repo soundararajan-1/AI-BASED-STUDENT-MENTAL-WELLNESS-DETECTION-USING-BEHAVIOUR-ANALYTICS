@@ -23,33 +23,33 @@ export default function DeleteDataModal({ isOpen, onClose, studentId, onDeleted 
 
   return (
     <div className="modal-overlay" id="delete-data-modal">
-      <div className="modal-content" style={{ maxWidth: '440px' }}>
+      <div className="modal-content" style={{ maxWidth: '440px', background: '#FFFFFF', border: '1px solid #E3E7DD', boxShadow: '0 20px 45px rgba(36, 51, 47, 0.15)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#f43f5e' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#8B2C1F' }}>
             <Trash2 size={22} />
-            <h3 style={{ fontSize: '18px', fontWeight: '700' }}>Delete My Data</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#24332F' }}>Delete My Data</h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}
+            style={{ background: 'none', border: 'none', color: '#63736B', cursor: 'pointer' }}
           >
             <X size={18} />
           </button>
         </div>
 
         <div style={{
-          background: 'rgba(244, 63, 94, 0.08)',
-          border: '1px solid rgba(244, 63, 94, 0.25)',
+          background: '#FFF8F6',
+          border: '1px solid #E9B9A9',
           borderRadius: '12px',
           padding: '14px',
           marginBottom: '16px',
           fontSize: '13px',
-          color: '#fda4af',
+          color: '#24332F',
           lineHeight: '1.5'
         }}>
-          <p style={{ fontWeight: '600', marginBottom: '6px' }}>Permanently remove all records?</p>
-          <p>
+          <p style={{ fontWeight: '700', color: '#8B2C1F', marginBottom: '6px' }}>Permanently remove all records?</p>
+          <p style={{ color: '#4A5B53' }}>
             This action will purge your profile, daily check-in logs, calculated personal bands,
             and drift indicators for Student ID <strong>{studentId}</strong>. This cannot be undone.
           </p>
@@ -69,7 +69,7 @@ export default function DeleteDataModal({ isOpen, onClose, studentId, onDeleted 
             onClick={handleDelete}
             disabled={deleting}
             style={{
-              background: '#f43f5e',
+              background: '#8B2C1F',
               color: '#ffffff',
               border: 'none',
               padding: '10px 18px',

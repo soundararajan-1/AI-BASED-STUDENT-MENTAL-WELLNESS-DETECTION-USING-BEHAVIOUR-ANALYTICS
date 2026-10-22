@@ -151,11 +151,13 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '28px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-            <span className="badge badge-indigo">Counsellor Portal</span>
-            <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Strictly Anonymized Planning (k &ge; 5)</span>
+            <span className="badge badge-purple">Counsellor Portal</span>
+            <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Strictly Anonymized Planning (k &ge; 5)</span>
           </div>
-          <h1 style={{ fontSize: '26px', fontWeight: 800 }}>Campus Departmental Wellness Overview</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginTop: '2px' }}>
+          <h1 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.5px' }}>
+            Campus Departmental Wellness Overview
+          </h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '2px' }}>
             Logged in as: <strong>{counsellorUser?.email || 'counsellor@campus.edu'}</strong> • Department-Level Trends Only
           </p>
         </div>
@@ -177,16 +179,16 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
         className="drift-card"
         style={{
           marginBottom: '28px',
-          border: (alertsData?.open_count || 0) > 0 ? '1px solid rgba(244, 63, 94, 0.45)' : '1px solid rgba(99, 102, 241, 0.25)',
-          boxShadow: (alertsData?.open_count || 0) > 0 ? '0 0 25px rgba(244, 63, 94, 0.15)' : 'none'
+          border: (alertsData?.open_count || 0) > 0 ? '1px solid var(--muted-coral)' : '1px solid var(--border-color)',
+          background: (alertsData?.open_count || 0) > 0 ? '#FFFAF8' : '#FFFFFF'
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div
               style={{
-                background: (alertsData?.open_count || 0) > 0 ? 'rgba(244, 63, 94, 0.2)' : 'rgba(99, 102, 241, 0.2)',
-                color: (alertsData?.open_count || 0) > 0 ? '#fb7185' : '#818cf8',
+                background: (alertsData?.open_count || 0) > 0 ? 'var(--muted-coral)' : 'var(--muted-lavender)',
+                color: (alertsData?.open_count || 0) > 0 ? '#8B2C1F' : '#5B487A',
                 padding: '8px',
                 borderRadius: '10px',
                 display: 'flex',
@@ -198,33 +200,34 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
             </div>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <h2 style={{ fontSize: '18px', fontWeight: 800, margin: 0, color: '#f8fafc' }}>
+                <h2 style={{ fontSize: '18px', fontWeight: 800, margin: 0, color: 'var(--text-main)' }}>
                   Live Student Help Alerts &amp; Consultation Requests
                 </h2>
                 {(alertsData?.open_count || 0) > 0 && (
-                  <span className="badge badge-danger" style={{ fontSize: '11px', fontWeight: 700 }}>
+                  <span className="badge badge-coral" style={{ fontSize: '11px', fontWeight: 700 }}>
                     {alertsData.open_count} Awaiting Counsellor
                   </span>
                 )}
               </div>
-              <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: '2px 0 0' }}>
+              <p style={{ fontSize: '12px', color: 'var(--text-secondary)', margin: '2px 0 0' }}>
                 Real-time distress signals raised by students. Accept an alert to open a direct, confidential 1-on-1 support chat.
               </p>
             </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '12px', color: '#94a3b8' }}>
-              Connected Counsellor: <strong style={{ color: '#a5b4fc' }}>{counsellorName}</strong>
+            <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+              Connected Counsellor: <strong style={{ color: 'var(--primary-brand)' }}>{counsellorName}</strong>
             </span>
           </div>
         </div>
 
         {/* Alerts List */}
         {!alertsData?.alerts?.length ? (
-          <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '13px', background: 'rgba(255,255,255,0.02)', borderRadius: '10px' }}>
-            <CheckCircle2 size={24} color="#10b981" style={{ margin: '0 auto 8px' }} />
-            <div>No active student distress alerts at this moment. All students in balance!</div>
+          <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '13px', background: '#FAFBF9', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+            <CheckCircle2 size={24} color="var(--primary-brand)" style={{ margin: '0 auto 8px' }} />
+            <div style={{ fontWeight: 600, color: 'var(--text-main)' }}>No active student distress alerts at this moment.</div>
+            <div style={{ fontSize: '12px', marginTop: '2px' }}>All cohorts are operating within balanced wellness parameters.</div>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -239,15 +242,15 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                   key={alert.id}
                   style={{
                     background: isOpen
-                      ? 'linear-gradient(135deg, rgba(244, 63, 94, 0.08), rgba(15, 23, 42, 0.6))'
+                      ? '#FFF7F5'
                       : isAccepted
-                      ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(15, 23, 42, 0.6))'
-                      : 'rgba(255,255,255,0.02)',
+                      ? '#F9F7FD'
+                      : '#FAFBF9',
                     border: isOpen
-                      ? '1px solid rgba(244, 63, 94, 0.35)'
+                      ? '1px solid #F1C3B6'
                       : isAccepted
-                      ? '1px solid rgba(99, 102, 241, 0.3)'
-                      : '1px solid rgba(255,255,255,0.05)',
+                      ? '1px solid #D6CCEE'
+                      : '1px solid var(--border-color)',
                     borderRadius: '12px',
                     padding: '16px',
                     display: 'flex',
@@ -265,43 +268,44 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                           borderRadius: '20px',
                           background:
                             alert.urgency === 'Urgent'
-                              ? 'rgba(244, 63, 94, 0.2)'
+                              ? 'var(--muted-coral)'
                               : alert.urgency === 'High'
-                              ? 'rgba(245, 158, 11, 0.2)'
-                              : 'rgba(20, 184, 166, 0.2)',
+                              ? '#FFF0D4'
+                              : 'var(--soft-sage)',
                           color:
                             alert.urgency === 'Urgent'
-                              ? '#fda4af'
+                              ? '#8B2C1F'
                               : alert.urgency === 'High'
-                              ? '#fde047'
-                              : '#5eead4',
+                              ? '#8A5D00'
+                              : 'var(--primary-brand)',
                           border: `1px solid ${
                             alert.urgency === 'Urgent'
-                              ? 'rgba(244, 63, 94, 0.4)'
+                              ? '#D89A89'
                               : alert.urgency === 'High'
-                              ? 'rgba(245, 158, 11, 0.4)'
-                              : 'rgba(20, 184, 166, 0.4)'
+                              ? '#E8C589'
+                              : '#BED6C3'
                           }`
                         }}
                       >
                         {alert.urgency} Urgency
                       </span>
 
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#f8fafc' }}>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-main)' }}>
                         {alert.student_name} ({alert.student_id})
                       </span>
-                      <span style={{ fontSize: '12px', color: '#94a3b8' }}>• {alert.department}</span>
-                      <span style={{ fontSize: '11px', color: '#64748b' }}>• {alert.created_at}</span>
+                      <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>• {alert.department}</span>
+                      <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>• {alert.created_at}</span>
                     </div>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span
                         style={{
                           fontSize: '11px',
-                          padding: '2px 8px',
+                          padding: '3px 9px',
                           borderRadius: '6px',
-                          background: isOpen ? 'rgba(244, 63, 94, 0.15)' : isAccepted ? 'rgba(99, 102, 241, 0.15)' : 'rgba(16, 185, 129, 0.15)',
-                          color: isOpen ? '#fda4af' : isAccepted ? '#a5b4fc' : '#6ee7b7'
+                          background: isOpen ? '#FFEBE7' : isAccepted ? 'var(--muted-lavender)' : 'var(--soft-sage)',
+                          color: isOpen ? '#8B2C1F' : isAccepted ? '#5B487A' : 'var(--primary-brand)',
+                          fontWeight: 600
                         }}
                       >
                         {isOpen ? 'Broadcast Open' : isAccepted ? `Connected with ${alert.accepted_by}` : 'Resolved'}
@@ -309,10 +313,10 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '13px', color: '#cbd5e1' }}>
+                  <div style={{ fontSize: '13px', color: 'var(--text-main)' }}>
                     <strong>Concern: </strong>
-                    <span style={{ color: '#f8fafc' }}>{alert.topic}</span>
-                    {alert.notes && <span style={{ color: '#94a3b8', fontStyle: 'italic', marginLeft: '6px' }}>— "{alert.notes}"</span>}
+                    <span>{alert.topic}</span>
+                    {alert.notes && <span style={{ color: 'var(--text-secondary)', fontStyle: 'italic', marginLeft: '6px' }}>— "{alert.notes}"</span>}
                   </div>
 
                   {/* Actions Bar */}
@@ -322,19 +326,13 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                         type="button"
                         disabled={isProcessing}
                         onClick={() => handleAcceptAlert(alert)}
+                        className="btn-primary"
                         style={{
-                          background: 'linear-gradient(135deg, #10b981, #0d9488)',
-                          color: '#ffffff',
-                          border: 'none',
-                          borderRadius: '8px',
                           padding: '8px 16px',
                           fontSize: '12px',
-                          fontWeight: 700,
-                          cursor: 'pointer',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '6px',
-                          boxShadow: '0 4px 14px rgba(16, 185, 129, 0.3)'
+                          gap: '6px'
                         }}
                       >
                         <HeartHandshake size={15} />
@@ -348,13 +346,13 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                           type="button"
                           onClick={() => handleOpenExistingChat(alert)}
                           style={{
-                            background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                            background: '#5B487A',
                             color: '#ffffff',
                             border: 'none',
                             borderRadius: '8px',
                             padding: '8px 16px',
                             fontSize: '12px',
-                            fontWeight: 700,
+                            fontWeight: 600,
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
@@ -369,12 +367,13 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                           type="button"
                           onClick={() => handleResolveSession(alert.alert_id)}
                           style={{
-                            background: 'rgba(255,255,255,0.06)',
-                            color: '#94a3b8',
-                            border: '1px solid rgba(255,255,255,0.1)',
+                            background: '#FFFFFF',
+                            color: 'var(--text-secondary)',
+                            border: '1px solid var(--border-color)',
                             borderRadius: '8px',
                             padding: '8px 12px',
                             fontSize: '12px',
+                            fontWeight: 500,
                             cursor: 'pointer'
                           }}
                         >
@@ -400,10 +399,10 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
             width: '480px',
             maxWidth: 'calc(100vw - 32px)',
             height: '600px',
-            background: '#0f172a',
-            border: '1px solid rgba(99, 102, 241, 0.4)',
-            borderRadius: '16px',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)',
+            background: '#FFFFFF',
+            border: '1px solid var(--border-color)',
+            borderRadius: '18px',
+            boxShadow: '0 16px 40px rgba(36, 51, 47, 0.16)',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -414,8 +413,8 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
           <div
             style={{
               padding: '14px 18px',
-              background: 'linear-gradient(135deg, #1e293b, #0f172a)',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#FAFBF9',
+              borderBottom: '1px solid var(--border-color)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center'
@@ -428,15 +427,14 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    background: '#10b981',
-                    boxShadow: '0 0 8px #10b981'
+                    background: 'var(--primary-brand)'
                   }}
                 />
-                <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                <h4 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>
                   1-on-1 Consultation: {activeAlertChat.student_name}
                 </h4>
               </div>
-              <p style={{ fontSize: '11px', color: '#94a3b8', margin: '2px 0 0' }}>
+              <p style={{ fontSize: '11px', color: 'var(--text-secondary)', margin: '2px 0 0' }}>
                 ID: {activeAlertChat.student_id} • Topic: {activeAlertChat.topic}
               </p>
             </div>
@@ -446,10 +444,10 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                 type="button"
                 onClick={() => handleResolveSession(activeAlertChat.alert_id)}
                 style={{
-                  background: 'rgba(16, 185, 129, 0.2)',
-                  color: '#6ee7b7',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
-                  padding: '4px 8px',
+                  background: 'var(--soft-sage)',
+                  color: 'var(--primary-brand)',
+                  border: '1px solid #C4D9C7',
+                  padding: '4px 10px',
                   borderRadius: '6px',
                   fontSize: '11px',
                   cursor: 'pointer',
@@ -461,7 +459,7 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
               <button
                 type="button"
                 onClick={() => setActiveAlertChat(null)}
-                style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '4px' }}
+                style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', padding: '4px' }}
               >
                 <X size={18} />
               </button>
@@ -477,7 +475,7 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
               display: 'flex',
               flexDirection: 'column',
               gap: '12px',
-              background: 'radial-gradient(ellipse at bottom, rgba(30, 41, 59, 0.4), rgba(11, 17, 32, 0.8))'
+              background: '#F6F5EF'
             }}
           >
             {chatMessages.map((m) => {
@@ -491,7 +489,7 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                     alignItems: isCounsellor ? 'flex-end' : 'flex-start'
                   }}
                 >
-                  <div style={{ fontSize: '10px', color: '#94a3b8', marginBottom: '3px', padding: '0 4px' }}>
+                  <div style={{ fontSize: '10px', color: 'var(--text-secondary)', marginBottom: '3px', padding: '0 4px' }}>
                     {isCounsellor ? 'You (Counsellor)' : `${m.sender_name} (${activeAlertChat.student_id})`} • {m.timestamp}
                   </div>
                   <div
@@ -499,11 +497,12 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                       maxWidth: '85%',
                       padding: '10px 14px',
                       borderRadius: isCounsellor ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-                      background: isCounsellor ? 'linear-gradient(135deg, #4f46e5, #4338ca)' : 'rgba(30, 41, 59, 0.85)',
-                      color: '#f8fafc',
+                      background: isCounsellor ? 'var(--primary-brand)' : '#FFFFFF',
+                      color: isCounsellor ? '#ffffff' : 'var(--text-main)',
                       fontSize: '13px',
                       lineHeight: '1.5',
-                      border: isCounsellor ? '1px solid rgba(99, 102, 241, 0.4)' : '1px solid rgba(255, 255, 255, 0.08)'
+                      border: isCounsellor ? 'none' : '1px solid var(--border-color)',
+                      boxShadow: '0 1px 4px rgba(36, 51, 47, 0.05)'
                     }}
                   >
                     {m.message}
@@ -519,8 +518,8 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
             onSubmit={handleSendMessage}
             style={{
               padding: '12px 14px',
-              background: '#0f172a',
-              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              background: '#FFFFFF',
+              borderTop: '1px solid var(--border-color)',
               display: 'flex',
               gap: '8px'
             }}
@@ -535,9 +534,9 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
                 flex: 1,
                 padding: '10px 14px',
                 borderRadius: '10px',
-                background: 'rgba(30, 41, 59, 0.8)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                color: '#f8fafc',
+                background: '#FAFBF9',
+                border: '1px solid var(--border-color)',
+                color: 'var(--text-main)',
                 fontSize: '13px',
                 outline: 'none'
               }}
@@ -545,15 +544,11 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
             <button
               type="submit"
               disabled={sendingMsg || !inputMessage.trim()}
+              className="btn-primary"
               style={{
-                background: 'linear-gradient(135deg, #6366f1, #14b8a6)',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '10px',
                 padding: '10px 16px',
-                fontWeight: 600,
+                borderRadius: '10px',
                 fontSize: '13px',
-                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px'
@@ -575,54 +570,54 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
         }}
       >
         <div className="drift-card">
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px' }}>
             Total Consented Students
           </div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', marginTop: '4px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 800, color: 'var(--primary-brand)', marginTop: '4px' }}>
             {data?.total_students ?? '—'}
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--teal-light)', marginTop: '4px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px' }}>
             100% Opted-In with Consent
           </div>
         </div>
 
         <div className="drift-card">
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px' }}>
             Cohorts Tracked (k &ge; 5)
           </div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#a5b4fc', marginTop: '4px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 800, color: '#5B487A', marginTop: '4px' }}>
             {data?.active_departments_tracked ?? '—'}
           </div>
-          <div style={{ fontSize: '12px', color: '#cbd5e1', marginTop: '4px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px' }}>
             Individual Anonymity Guaranteed
           </div>
         </div>
 
         <div className="drift-card">
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px' }}>
             Anonymity Standard
           </div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#fde047', marginTop: '4px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 800, color: '#9C4D35', marginTop: '4px' }}>
             k = {data?.k_anonymity_threshold ?? 5}
           </div>
-          <div style={{ fontSize: '12px', color: '#cbd5e1', marginTop: '4px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px' }}>
             Differential Threshold Policy
           </div>
         </div>
       </div>
 
       {/* Department Cards Grid */}
-      <h2 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <BarChart2 size={20} color="#a5b4fc" /> Departmental Trend Breakdown
+      <h2 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' }}>
+        <BarChart2 size={20} color="var(--primary-brand)" /> Departmental Trend Breakdown
       </h2>
 
       {loading ? (
         <div className="drift-card" style={{ textAlign: 'center', padding: '40px' }}>
-          <RefreshCw size={24} className="animate-spin" style={{ margin: '0 auto 12px', color: 'var(--teal-light)' }} />
-          <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Aggregating departmental metrics...</p>
+          <RefreshCw size={24} className="animate-spin" style={{ margin: '0 auto 12px', color: 'var(--primary-brand)' }} />
+          <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Aggregating departmental metrics...</p>
         </div>
       ) : errorMsg ? (
-        <div className="drift-card" style={{ color: '#fda4af', padding: '24px' }}>
+        <div className="drift-card" style={{ color: '#8B2C1F', background: '#FFF0ED', padding: '24px' }}>
           {errorMsg}
         </div>
       ) : (
@@ -630,22 +625,22 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
           {data?.departments?.map((dept, idx) => (
             <div key={idx} className="drift-card">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: 700 }}>{dept.department}</h3>
-                <span className="badge badge-indigo">{dept.student_count} Students</span>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-main)' }}>{dept.department}</h3>
+                <span className="badge badge-purple">{dept.student_count} Students</span>
               </div>
 
               {/* Stress & Mood Stats */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' }}>
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '10px' }}>
-                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Avg Stress (1-5)</div>
-                  <div style={{ fontSize: '18px', fontWeight: 700, color: dept.avg_stress >= 3.5 ? '#fda4af' : '#6ee7b7' }}>
+                <div style={{ background: '#FAFBF9', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '10px' }}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Avg Stress (1-5)</div>
+                  <div style={{ fontSize: '18px', fontWeight: 700, color: dept.avg_stress >= 3.5 ? '#8B2C1F' : 'var(--primary-brand)' }}>
                     {dept.avg_stress} / 5.0
                   </div>
                 </div>
 
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '10px' }}>
-                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Avg Mood (1-5)</div>
-                  <div style={{ fontSize: '18px', fontWeight: 700, color: dept.avg_mood >= 3.0 ? '#6ee7b7' : '#fde047' }}>
+                <div style={{ background: '#FAFBF9', border: '1px solid var(--border-color)', padding: '10px', borderRadius: '10px' }}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Avg Mood (1-5)</div>
+                  <div style={{ fontSize: '18px', fontWeight: 700, color: dept.avg_mood >= 3.0 ? 'var(--primary-brand)' : '#8A5D00' }}>
                     {dept.avg_mood} / 5.0
                   </div>
                 </div>
@@ -653,18 +648,18 @@ export default function CounsellorPortalPage({ counsellorUser, onBackToHome }) {
 
               {/* Elevated Stress Bar */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>Elevated Stress (Stress &ge; 4):</span>
-                  <span style={{ fontWeight: 700, color: dept.elevated_stress_pct > 30 ? '#fda4af' : '#cbd5e1' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '6px' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Elevated Stress (Stress &ge; 4):</span>
+                  <span style={{ fontWeight: 700, color: dept.elevated_stress_pct > 30 ? '#8B2C1F' : 'var(--text-main)' }}>
                     {dept.elevated_stress_pct}% of check-ins
                   </span>
                 </div>
-                <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.08)', borderRadius: '4px', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '8px', background: 'var(--soft-sage)', borderRadius: '4px', overflow: 'hidden' }}>
                   <div
                     style={{
                       width: `${Math.min(dept.elevated_stress_pct, 100)}%`,
                       height: '100%',
-                      background: dept.elevated_stress_pct > 30 ? 'linear-gradient(90deg, #f59e0b, #f43f5e)' : 'linear-gradient(90deg, #10b981, #14b8a6)',
+                      background: dept.elevated_stress_pct > 30 ? 'var(--muted-coral)' : 'var(--primary-brand)',
                       borderRadius: '4px',
                       transition: 'width 0.5s ease'
                     }}

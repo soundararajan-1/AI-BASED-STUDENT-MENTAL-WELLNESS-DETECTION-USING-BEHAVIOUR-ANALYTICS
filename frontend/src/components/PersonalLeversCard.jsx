@@ -13,31 +13,31 @@ export default function PersonalLeversCard({ leversData }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
-            background: 'rgba(20, 184, 166, 0.15)',
+            background: '#DDE9DF',
             padding: '6px',
             borderRadius: '8px',
-            color: '#2dd4bf'
+            color: '#245B52'
           }}>
             <Sliders size={18} />
           </div>
           <div>
             <span className="badge badge-teal" style={{ marginBottom: '4px' }}>Personal Lever</span>
-            <h3 style={{ fontSize: '15px', fontWeight: '700' }}>Lifestyle Correlation in Your Data</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#24332F' }}>Lifestyle Correlation in Your Data</h3>
           </div>
         </div>
 
-        <span style={{ fontSize: '11px', color: '#94a3b8' }}>
+        <span style={{ fontSize: '11px', color: '#63736B' }}>
           Next-Day Stress Impact
         </span>
       </div>
 
       <div style={{
-        background: 'rgba(20, 184, 166, 0.08)',
-        border: '1px solid rgba(20, 184, 166, 0.25)',
+        background: '#FAFBF9',
+        border: '1px solid #E3E7DD',
         borderRadius: '12px',
         padding: '14px 16px',
         fontSize: '13px',
-        color: '#f8fafc',
+        color: '#24332F',
         lineHeight: '1.5',
         marginBottom: '10px'
       }}>
@@ -48,28 +48,28 @@ export default function PersonalLeversCard({ leversData }) {
         <div style={{ display: 'flex', gap: '16px', marginBottom: '10px', fontSize: '12px' }}>
           <div style={{
             flex: 1,
-            background: 'rgba(255, 255, 255, 0.02)',
-            padding: '8px 12px',
+            background: '#FFFFFF',
+            padding: '10px 14px',
             borderRadius: '8px',
-            border: '1px solid rgba(255, 255, 255, 0.06)'
+            border: '1px solid #E3E7DD'
           }}>
-            <span style={{ color: '#94a3b8' }}>Stress after good sleep:</span>{' '}
-            <strong style={{ color: '#2dd4bf' }}>{higher_sleep_stress_avg} / 5</strong>
+            <span style={{ color: '#63736B' }}>Stress after good sleep:</span>{' '}
+            <strong style={{ color: '#245B52' }}>{higher_sleep_stress_avg} / 5</strong>
           </div>
           <div style={{
             flex: 1,
-            background: 'rgba(255, 255, 255, 0.02)',
-            padding: '8px 12px',
+            background: '#FFFFFF',
+            padding: '10px 14px',
             borderRadius: '8px',
-            border: '1px solid rgba(255, 255, 255, 0.06)'
+            border: '1px solid #E3E7DD'
           }}>
-            <span style={{ color: '#94a3b8' }}>Stress after low sleep:</span>{' '}
-            <strong style={{ color: '#f59e0b' }}>{lower_sleep_stress_avg} / 5</strong>
+            <span style={{ color: '#63736B' }}>Stress after low sleep:</span>{' '}
+            <strong style={{ color: '#8B2C1F' }}>{lower_sleep_stress_avg} / 5</strong>
           </div>
         </div>
       )}
 
-      <div style={{ fontSize: '11px', color: '#94a3b8', fontStyle: 'italic' }}>
+      <div style={{ fontSize: '11px', color: '#63736B', fontStyle: 'italic' }}>
         {disclaimer}
       </div>
     </div>

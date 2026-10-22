@@ -132,18 +132,18 @@ export default function LoginPage({ onLoginSuccess }) {
             width: '54px',
             height: '54px',
             borderRadius: '16px',
-            background: 'linear-gradient(135deg, #14b8a6, #6366f1)',
-            boxShadow: '0 8px 24px rgba(20, 184, 166, 0.3)',
+            background: 'var(--primary-brand)',
+            boxShadow: '0 6px 18px rgba(36, 91, 82, 0.2)',
             marginBottom: '16px',
             color: '#ffffff'
           }}
         >
-          <Compass size={30} />
+          <Compass size={28} />
         </div>
-        <h1 style={{ fontSize: '26px', fontWeight: '800', letterSpacing: '-0.5px', marginBottom: '6px' }}>
+        <h1 style={{ fontSize: '26px', fontWeight: '800', letterSpacing: '-0.5px', marginBottom: '8px', color: 'var(--text-main)' }}>
           Campus Wellness Access Portal
         </h1>
-        <p style={{ color: 'var(--text-muted)', fontSize: '14px', maxWidth: '520px', margin: '0 auto' }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '14px', maxWidth: '520px', margin: '0 auto', lineHeight: 1.5 }}>
           Select your campus role to access personal wellness analytics, departmental aggregates, or administrative telemetry.
         </p>
       </div>
@@ -163,20 +163,34 @@ export default function LoginPage({ onLoginSuccess }) {
           onClick={() => { setActiveRole('student'); setErrorMsg(''); }}
           style={{
             padding: '16px 12px',
-            borderRadius: '14px',
-            border: activeRole === 'student' ? '2px solid var(--teal-primary)' : '1px solid rgba(255,255,255,0.08)',
-            background: activeRole === 'student' ? 'rgba(20, 184, 166, 0.15)' : 'rgba(255,255,255,0.03)',
+            borderRadius: '16px',
+            border: activeRole === 'student' ? '2px solid var(--primary-brand)' : '1px solid var(--border-color)',
+            background: activeRole === 'student' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)',
+            boxShadow: activeRole === 'student' ? '0 4px 14px rgba(36, 91, 82, 0.08)' : 'none',
             cursor: 'pointer',
             textAlign: 'center',
             transition: 'all 0.2s ease',
-            color: activeRole === 'student' ? '#ffffff' : 'var(--text-muted)'
+            color: activeRole === 'student' ? 'var(--text-main)' : 'var(--text-secondary)'
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px' }}>
-            <GraduationCap size={24} color={activeRole === 'student' ? 'var(--teal-light)' : '#94a3b8'} />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <div
+              style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '10px',
+                background: activeRole === 'student' ? 'var(--soft-sage)' : '#F6F5EF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--primary-brand)'
+              }}
+            >
+              <GraduationCap size={20} />
+            </div>
           </div>
-          <div style={{ fontWeight: 700, fontSize: '15px' }}>Student</div>
-          <div style={{ fontSize: '11px', opacity: 0.8, marginTop: '2px' }}>Personal Analytics & Check-ins</div>
+          <div style={{ fontWeight: 700, fontSize: '14px' }}>Student</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '2px' }}>Personal Analytics & Check-ins</div>
         </button>
 
         {/* Counsellor Tab */}
@@ -185,20 +199,34 @@ export default function LoginPage({ onLoginSuccess }) {
           onClick={() => { setActiveRole('counsellor'); setErrorMsg(''); }}
           style={{
             padding: '16px 12px',
-            borderRadius: '14px',
-            border: activeRole === 'counsellor' ? '2px solid var(--indigo-primary)' : '1px solid rgba(255,255,255,0.08)',
-            background: activeRole === 'counsellor' ? 'rgba(99, 102, 241, 0.15)' : 'rgba(255,255,255,0.03)',
+            borderRadius: '16px',
+            border: activeRole === 'counsellor' ? '2px solid #5B487A' : '1px solid var(--border-color)',
+            background: activeRole === 'counsellor' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)',
+            boxShadow: activeRole === 'counsellor' ? '0 4px 14px rgba(91, 72, 122, 0.08)' : 'none',
             cursor: 'pointer',
             textAlign: 'center',
             transition: 'all 0.2s ease',
-            color: activeRole === 'counsellor' ? '#ffffff' : 'var(--text-muted)'
+            color: activeRole === 'counsellor' ? 'var(--text-main)' : 'var(--text-secondary)'
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px' }}>
-            <Building2 size={24} color={activeRole === 'counsellor' ? '#a5b4fc' : '#94a3b8'} />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <div
+              style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '10px',
+                background: activeRole === 'counsellor' ? 'var(--muted-lavender)' : '#F6F5EF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#5B487A'
+              }}
+            >
+              <Building2 size={20} />
+            </div>
           </div>
-          <div style={{ fontWeight: 700, fontSize: '15px' }}>Counsellor</div>
-          <div style={{ fontSize: '11px', opacity: 0.8, marginTop: '2px' }}>Anonymized Department Trends</div>
+          <div style={{ fontWeight: 700, fontSize: '14px' }}>Counsellor</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '2px' }}>Anonymized Department Trends</div>
         </button>
 
         {/* Admin Tab */}
@@ -207,20 +235,34 @@ export default function LoginPage({ onLoginSuccess }) {
           onClick={() => { setActiveRole('admin'); setErrorMsg(''); }}
           style={{
             padding: '16px 12px',
-            borderRadius: '14px',
-            border: activeRole === 'admin' ? '2px solid #f59e0b' : '1px solid rgba(255,255,255,0.08)',
-            background: activeRole === 'admin' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255,255,255,0.03)',
+            borderRadius: '16px',
+            border: activeRole === 'admin' ? '2px solid #9C4D35' : '1px solid var(--border-color)',
+            background: activeRole === 'admin' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.6)',
+            boxShadow: activeRole === 'admin' ? '0 4px 14px rgba(156, 77, 53, 0.08)' : 'none',
             cursor: 'pointer',
             textAlign: 'center',
             transition: 'all 0.2s ease',
-            color: activeRole === 'admin' ? '#ffffff' : 'var(--text-muted)'
+            color: activeRole === 'admin' ? 'var(--text-main)' : 'var(--text-secondary)'
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '6px' }}>
-            <ShieldCheck size={24} color={activeRole === 'admin' ? '#fde047' : '#94a3b8'} />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <div
+              style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '10px',
+                background: activeRole === 'admin' ? 'var(--muted-coral)' : '#F6F5EF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#9C4D35'
+              }}
+            >
+              <ShieldCheck size={20} />
+            </div>
           </div>
-          <div style={{ fontWeight: 700, fontSize: '15px' }}>Administrator</div>
-          <div style={{ fontSize: '11px', opacity: 0.8, marginTop: '2px' }}>System Health & Telemetry</div>
+          <div style={{ fontWeight: 700, fontSize: '14px' }}>Administrator</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '2px' }}>System Health & Telemetry</div>
         </button>
       </div>
 
@@ -228,11 +270,11 @@ export default function LoginPage({ onLoginSuccess }) {
       {errorMsg && (
         <div
           style={{
-            background: errorMsg.includes('pending') ? 'rgba(245, 158, 11, 0.15)' : 'rgba(244, 63, 94, 0.12)',
-            border: `1px solid ${errorMsg.includes('pending') ? 'rgba(245, 158, 11, 0.35)' : 'rgba(244, 63, 94, 0.3)'}`,
-            color: errorMsg.includes('pending') ? '#fde047' : '#fda4af',
+            background: errorMsg.includes('pending') ? '#FFF8EA' : '#FDF0ED',
+            border: `1px solid ${errorMsg.includes('pending') ? '#F2D492' : 'var(--muted-coral)'}`,
+            color: errorMsg.includes('pending') ? '#8A5D00' : '#8B2C1F',
             padding: '14px 18px',
-            borderRadius: '12px',
+            borderRadius: '14px',
             fontSize: '13px',
             display: 'flex',
             alignItems: 'center',
@@ -242,7 +284,7 @@ export default function LoginPage({ onLoginSuccess }) {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {errorMsg.includes('pending') ? <Clock size={20} style={{ flexShrink: 0 }} /> : <AlertCircle size={18} style={{ flexShrink: 0 }} />}
+            {errorMsg.includes('pending') ? <Clock size={18} style={{ flexShrink: 0 }} /> : <AlertCircle size={18} style={{ flexShrink: 0 }} />}
             <span>{errorMsg}</span>
           </div>
           {errorMsg.includes('pending') && (
@@ -250,13 +292,13 @@ export default function LoginPage({ onLoginSuccess }) {
               type="button"
               onClick={() => { setActiveRole('admin'); setErrorMsg(''); }}
               style={{
-                background: '#f59e0b',
-                color: '#0f172a',
+                background: 'var(--primary-brand)',
+                color: '#ffffff',
                 border: 'none',
                 borderRadius: '8px',
                 padding: '6px 12px',
                 fontSize: '12px',
-                fontWeight: 700,
+                fontWeight: 600,
                 cursor: 'pointer',
                 whiteSpace: 'nowrap'
               }}
@@ -270,16 +312,17 @@ export default function LoginPage({ onLoginSuccess }) {
       {successMsg && (
         <div
           style={{
-            background: 'rgba(16, 185, 129, 0.12)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
-            color: '#6ee7b7',
+            background: 'var(--soft-sage)',
+            border: '1px solid #C4D9C7',
+            color: 'var(--primary-brand)',
             padding: '12px 16px',
-            borderRadius: '10px',
+            borderRadius: '12px',
             fontSize: '13px',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            marginBottom: '20px'
+            marginBottom: '20px',
+            fontWeight: 500
           }}
         >
           <CheckCircle2 size={18} style={{ flexShrink: 0 }} />
@@ -296,11 +339,11 @@ export default function LoginPage({ onLoginSuccess }) {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <div>
-                <h2 style={{ fontSize: '20px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <GraduationCap size={22} color="var(--teal-light)" />
+                <h2 style={{ fontSize: '19px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' }}>
+                  <GraduationCap size={22} color="var(--primary-brand)" />
                   {isRegistering ? 'Register Student Profile' : 'Student Sign In'}
                 </h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginTop: '4px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '4px' }}>
                   {isRegistering
                     ? 'Create your anonymous Student ID and initialize personal baseline tracking.'
                     : 'Enter your anonymous Student ID to access your personal wellness baseline and check-in history.'}
@@ -311,11 +354,11 @@ export default function LoginPage({ onLoginSuccess }) {
 
             <form onSubmit={handleStudentLogin}>
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                   Student ID
                 </label>
                 <div style={{ position: 'relative' }}>
-                  <User size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                  <User size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                   <input
                     type="text"
                     value={studentId}
@@ -325,10 +368,10 @@ export default function LoginPage({ onLoginSuccess }) {
                     style={{
                       width: '100%',
                       padding: '12px 14px 12px 38px',
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.12)',
+                      background: '#FAFBF9',
+                      border: '1px solid var(--border-color)',
                       borderRadius: '10px',
-                      color: '#ffffff',
+                      color: 'var(--text-main)',
                       fontSize: '14px',
                       outline: 'none'
                     }}
@@ -339,7 +382,7 @@ export default function LoginPage({ onLoginSuccess }) {
               {isRegistering && (
                 <>
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Full Name
                     </label>
                     <input
@@ -350,10 +393,10 @@ export default function LoginPage({ onLoginSuccess }) {
                       style={{
                         width: '100%',
                         padding: '12px 14px',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.12)',
+                        background: '#FAFBF9',
+                        border: '1px solid var(--border-color)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-main)',
                         fontSize: '14px',
                         outline: 'none'
                       }}
@@ -361,11 +404,11 @@ export default function LoginPage({ onLoginSuccess }) {
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Create Passcode
                     </label>
                     <div style={{ position: 'relative' }}>
-                      <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                      <Lock size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                       <input
                         type="password"
                         value={studentPassword}
@@ -374,10 +417,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px 12px 38px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
@@ -387,7 +430,7 @@ export default function LoginPage({ onLoginSuccess }) {
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                         Department
                       </label>
                       <select
@@ -396,10 +439,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px',
-                          background: '#131d33',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px'
                         }}
                       >
@@ -412,7 +455,7 @@ export default function LoginPage({ onLoginSuccess }) {
                       </select>
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                         Academic Year
                       </label>
                       <select
@@ -421,10 +464,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px',
-                          background: '#131d33',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px'
                         }}
                       >
@@ -436,13 +479,13 @@ export default function LoginPage({ onLoginSuccess }) {
                     </div>
                   </div>
 
-                  <div style={{ background: 'rgba(20, 184, 166, 0.08)', border: '1px solid rgba(20, 184, 166, 0.25)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
-                    <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', fontSize: '13px' }}>
+                  <div style={{ background: '#FAFBF9', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
+                    <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', fontSize: '13px', color: 'var(--text-main)' }}>
                       <input
                         type="checkbox"
                         checked={newConsent}
                         onChange={(e) => setNewConsent(e.target.checked)}
-                        style={{ marginTop: '2px', accentColor: 'var(--teal-primary)' }}
+                        style={{ marginTop: '2px', accentColor: 'var(--primary-brand)' }}
                       />
                       <span>
                         <strong>Informed Consent:</strong> I agree to participate in confidential educational wellness tracking.
@@ -450,7 +493,7 @@ export default function LoginPage({ onLoginSuccess }) {
                     </label>
                   </div>
 
-                  <div style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: '10px', padding: '10px 14px', marginBottom: '16px', fontSize: '12px', color: '#fde047', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ background: '#FFF8EA', border: '1px solid #F2D492', borderRadius: '10px', padding: '10px 14px', marginBottom: '16px', fontSize: '12px', color: '#8A5D00', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Clock size={16} style={{ flexShrink: 0 }} />
                     <span><strong>Admin Verification Notice:</strong> Newly registered accounts are verified by the Campus Administrator before sign-in access is activated.</span>
                   </div>
@@ -459,11 +502,11 @@ export default function LoginPage({ onLoginSuccess }) {
 
               {!isRegistering && (
                 <div style={{ marginBottom: '20px' }}>
-                  <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
-                    Student Passcode <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>(Default: student123)</span>
+                  <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
+                    Student Passcode <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>(Default: student123)</span>
                   </label>
                   <div style={{ position: 'relative' }}>
-                    <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                    <Lock size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                     <input
                       type="password"
                       value={studentPassword}
@@ -473,10 +516,10 @@ export default function LoginPage({ onLoginSuccess }) {
                       style={{
                         width: '100%',
                         padding: '12px 14px 12px 38px',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.12)',
+                        background: '#FAFBF9',
+                        border: '1px solid var(--border-color)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-main)',
                         fontSize: '14px',
                         outline: 'none'
                       }}
@@ -496,14 +539,14 @@ export default function LoginPage({ onLoginSuccess }) {
               </button>
             </form>
 
-            <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--text-muted)' }}>
+            <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--text-secondary)' }}>
               {isRegistering ? (
                 <span>
                   Already have an approved student profile?{' '}
                   <button
                     type="button"
                     onClick={() => { setIsRegistering(false); setErrorMsg(''); setSuccessMsg(''); }}
-                    style={{ background: 'none', border: 'none', color: 'var(--teal-light)', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
+                    style={{ background: 'none', border: 'none', color: 'var(--primary-brand)', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
                   >
                     Back to Sign In
                   </button>
@@ -514,7 +557,7 @@ export default function LoginPage({ onLoginSuccess }) {
                   <button
                     type="button"
                     onClick={() => { setIsRegistering(true); setErrorMsg(''); setSuccessMsg(''); }}
-                    style={{ background: 'none', border: 'none', color: 'var(--teal-light)', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
+                    style={{ background: 'none', border: 'none', color: 'var(--primary-brand)', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
                   >
                     Create New Student Profile (Requires Admin Approval)
                   </button>
@@ -531,28 +574,28 @@ export default function LoginPage({ onLoginSuccess }) {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <div>
-                <h2 style={{ fontSize: '20px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Building2 size={22} color="#a5b4fc" />
+                <h2 style={{ fontSize: '19px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' }}>
+                  <Building2 size={22} color="#5B487A" />
                   {isCounsellorRegistering ? 'Register as Campus Counsellor' : 'Counsellor & Faculty Access'}
                 </h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginTop: '4px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '4px' }}>
                   {isCounsellorRegistering
                     ? 'Submit your counsellor credentials for administrator verification.'
                     : 'Sign in to monitor cohort wellness trends and receive live student consultation alerts.'}
                 </p>
               </div>
-              <span className="badge badge-indigo">Counsellor Portal</span>
+              <span className="badge badge-purple">Counsellor Portal</span>
             </div>
 
             <form onSubmit={handleCounsellorLogin}>
               {isCounsellorRegistering ? (
                 <>
                   <div style={{ marginBottom: '14px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Full Name & Title
                     </label>
                     <div style={{ position: 'relative' }}>
-                      <User size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                      <User size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                       <input
                         type="text"
                         value={counsellorName}
@@ -562,10 +605,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px 12px 38px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
@@ -574,7 +617,7 @@ export default function LoginPage({ onLoginSuccess }) {
                   </div>
 
                   <div style={{ marginBottom: '14px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Campus Email Address
                     </label>
                     <input
@@ -586,10 +629,10 @@ export default function LoginPage({ onLoginSuccess }) {
                       style={{
                         width: '100%',
                         padding: '12px 14px',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.12)',
+                        background: '#FAFBF9',
+                        border: '1px solid var(--border-color)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-main)',
                         fontSize: '14px',
                         outline: 'none'
                       }}
@@ -598,7 +641,7 @@ export default function LoginPage({ onLoginSuccess }) {
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                         Specialization / Focus
                       </label>
                       <input
@@ -609,17 +652,17 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                         Office Contact Phone
                       </label>
                       <input
@@ -630,10 +673,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
@@ -642,11 +685,11 @@ export default function LoginPage({ onLoginSuccess }) {
                   </div>
 
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Account Password
                     </label>
                     <div style={{ position: 'relative' }}>
-                      <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                      <Lock size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                       <input
                         type="password"
                         value={counsellorPassword}
@@ -656,10 +699,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px 12px 38px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
@@ -667,7 +710,7 @@ export default function LoginPage({ onLoginSuccess }) {
                     </div>
                   </div>
 
-                  <div style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: '10px', padding: '10px 14px', marginBottom: '16px', fontSize: '12px', color: '#fde047', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ background: '#FFF8EA', border: '1px solid #F2D492', borderRadius: '10px', padding: '10px 14px', marginBottom: '16px', fontSize: '12px', color: '#8A5D00', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Clock size={16} style={{ flexShrink: 0 }} />
                     <span><strong>Admin Verification Notice:</strong> New counsellor accounts require administrator approval before logging in to access student consultations.</span>
                   </div>
@@ -675,11 +718,11 @@ export default function LoginPage({ onLoginSuccess }) {
               ) : (
                 <>
                   <div style={{ marginBottom: '16px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Counsellor Email
                     </label>
                     <div style={{ position: 'relative' }}>
-                      <User size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                      <User size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                       <input
                         type="email"
                         value={counsellorEmail}
@@ -689,10 +732,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px 12px 38px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
@@ -701,11 +744,11 @@ export default function LoginPage({ onLoginSuccess }) {
                   </div>
 
                   <div style={{ marginBottom: '20px' }}>
-                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                       Access Passcode
                     </label>
                     <div style={{ position: 'relative' }}>
-                      <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                      <Lock size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                       <input
                         type="password"
                         value={counsellorPassword}
@@ -715,10 +758,10 @@ export default function LoginPage({ onLoginSuccess }) {
                         style={{
                           width: '100%',
                           padding: '12px 14px 12px 38px',
-                          background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(255,255,255,0.12)',
+                          background: '#FAFBF9',
+                          border: '1px solid var(--border-color)',
                           borderRadius: '10px',
-                          color: '#ffffff',
+                          color: 'var(--text-main)',
                           fontSize: '14px',
                           outline: 'none'
                         }}
@@ -733,7 +776,7 @@ export default function LoginPage({ onLoginSuccess }) {
                 disabled={loading}
                 style={{
                   width: '100%',
-                  background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                  background: '#5B487A',
                   color: '#ffffff',
                   padding: '14px',
                   borderRadius: '12px',
@@ -744,7 +787,8 @@ export default function LoginPage({ onLoginSuccess }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px'
+                  gap: '8px',
+                  transition: 'opacity 0.2s'
                 }}
               >
                 {loading ? 'Processing...' : isCounsellorRegistering ? 'Submit Counsellor Application' : 'Sign In as Counsellor'}
@@ -752,14 +796,14 @@ export default function LoginPage({ onLoginSuccess }) {
               </button>
             </form>
 
-            <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--text-muted)' }}>
+            <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--text-secondary)' }}>
               {isCounsellorRegistering ? (
                 <span>
                   Already approved counsellor?{' '}
                   <button
                     type="button"
                     onClick={() => { setIsCounsellorRegistering(false); setErrorMsg(''); setSuccessMsg(''); }}
-                    style={{ background: 'none', border: 'none', color: '#a5b4fc', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
+                    style={{ background: 'none', border: 'none', color: '#5B487A', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
                   >
                     Back to Sign In
                   </button>
@@ -770,7 +814,7 @@ export default function LoginPage({ onLoginSuccess }) {
                   <button
                     type="button"
                     onClick={() => { setIsCounsellorRegistering(true); setErrorMsg(''); setSuccessMsg(''); }}
-                    style={{ background: 'none', border: 'none', color: '#a5b4fc', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
+                    style={{ background: 'none', border: 'none', color: '#5B487A', cursor: 'pointer', fontWeight: 600, textDecoration: 'underline' }}
                   >
                     Apply for Counsellor Access (Requires Admin Approval)
                   </button>
@@ -787,24 +831,24 @@ export default function LoginPage({ onLoginSuccess }) {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <div>
-                <h2 style={{ fontSize: '20px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <ShieldCheck size={22} color="#fde047" />
+                <h2 style={{ fontSize: '19px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' }}>
+                  <ShieldCheck size={22} color="#9C4D35" />
                   System Administrator Console
                 </h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '13px', marginTop: '4px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '4px' }}>
                   Platform telemetry, database inspectors, machine learning diagnostics, and model benchmarks.
                 </p>
               </div>
-              <span className="badge badge-warning">Admin Console</span>
+              <span className="badge badge-coral">Admin Console</span>
             </div>
 
             <form onSubmit={handleAdminLogin}>
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                   Administrator Username / Email
                 </label>
                 <div style={{ position: 'relative' }}>
-                  <User size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                  <User size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                   <input
                     type="text"
                     value={adminUsername}
@@ -814,10 +858,10 @@ export default function LoginPage({ onLoginSuccess }) {
                     style={{
                       width: '100%',
                       padding: '12px 14px 12px 38px',
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.12)',
+                      background: '#FAFBF9',
+                      border: '1px solid var(--border-color)',
                       borderRadius: '10px',
-                      color: '#ffffff',
+                      color: 'var(--text-main)',
                       fontSize: '14px',
                       outline: 'none'
                     }}
@@ -826,11 +870,11 @@ export default function LoginPage({ onLoginSuccess }) {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--text-main)' }}>
                   Security Master Passcode
                 </label>
                 <div style={{ position: 'relative' }}>
-                  <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
+                  <Lock size={16} color="var(--text-secondary)" style={{ position: 'absolute', left: '12px', top: '14px' }} />
                   <input
                     type="password"
                     value={adminPassword}
@@ -840,10 +884,10 @@ export default function LoginPage({ onLoginSuccess }) {
                     style={{
                       width: '100%',
                       padding: '12px 14px 12px 38px',
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.12)',
+                      background: '#FAFBF9',
+                      border: '1px solid var(--border-color)',
                       borderRadius: '10px',
-                      color: '#ffffff',
+                      color: 'var(--text-main)',
                       fontSize: '14px',
                       outline: 'none'
                     }}
@@ -856,7 +900,7 @@ export default function LoginPage({ onLoginSuccess }) {
                 disabled={loading}
                 style={{
                   width: '100%',
-                  background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                  background: '#9C4D35',
                   color: '#ffffff',
                   padding: '14px',
                   borderRadius: '12px',
@@ -867,7 +911,8 @@ export default function LoginPage({ onLoginSuccess }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px'
+                  gap: '8px',
+                  transition: 'opacity 0.2s'
                 }}
               >
                 {loading ? 'Authenticating...' : 'Sign In as Administrator'}
@@ -879,22 +924,22 @@ export default function LoginPage({ onLoginSuccess }) {
       </div>
 
       {/* Role Comparison Table for Quick Reference */}
-      <div style={{ marginTop: '28px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '14px', padding: '16px 20px' }}>
-        <div style={{ fontSize: '13px', fontWeight: 600, color: '#e2e8f0', marginBottom: '8px' }}>
+      <div style={{ marginTop: '28px', background: '#FFFFFF', border: '1px solid var(--border-color)', borderRadius: '16px', padding: '20px 24px', boxShadow: '0 2px 8px rgba(36, 51, 47, 0.03)' }}>
+        <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '12px' }}>
           Role Capabilities & Access Boundaries:
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px', fontSize: '12px', color: 'var(--text-muted)' }}>
-          <div>
-            <strong style={{ color: 'var(--teal-light)' }}>🎓 Student:</strong>
-            <p style={{ marginTop: '4px' }}>View personal 7-axis radar, What Changed deltas, check-in submission, and non-clinical AI suggestions.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+          <div style={{ background: '#FAFBF9', padding: '12px', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+            <strong style={{ color: 'var(--primary-brand)', display: 'block', marginBottom: '4px' }}>🎓 Student:</strong>
+            Personal 7-axis radar, What Changed deltas, check-in submission, and non-clinical AI suggestions.
           </div>
-          <div>
-            <strong style={{ color: '#a5b4fc' }}>🩺 Counsellor:</strong>
-            <p style={{ marginTop: '4px' }}>Inspect anonymized departmental wellness averages, elevated stress percentages, and cohort planning under $k \ge 5$.</p>
+          <div style={{ background: '#FAFBF9', padding: '12px', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+            <strong style={{ color: '#5B487A', display: 'block', marginBottom: '4px' }}>🩺 Counsellor:</strong>
+            Anonymized departmental wellness averages, elevated stress percentages, and cohort planning under $k \ge 5$.
           </div>
-          <div>
-            <strong style={{ color: '#fde047' }}>🛡️ Administrator:</strong>
-            <p style={{ marginTop: '4px' }}>Inspect total database table rows, trigger Random Forest benchmarks, view API diagnostics and system uptime.</p>
+          <div style={{ background: '#FAFBF9', padding: '12px', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+            <strong style={{ color: '#9C4D35', display: 'block', marginBottom: '4px' }}>🛡️ Administrator:</strong>
+            Total database table rows, Random Forest benchmarks, API diagnostics, and account approvals.
           </div>
         </div>
       </div>

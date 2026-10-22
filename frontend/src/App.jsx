@@ -212,7 +212,7 @@ export default function App() {
   const concernBadge = getConcernBadge();
 
   return (
-    <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '24px 20px', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '28px 20px', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       
       {/* Top Global Navigation Bar - Secure & Role-Scoped */}
       <nav style={{
@@ -221,30 +221,32 @@ export default function App() {
         justifyContent: 'space-between',
         flexWrap: 'wrap',
         gap: '12px',
-        marginBottom: '20px',
-        padding: '12px 18px',
-        background: 'rgba(19, 29, 51, 0.7)',
-        backdropFilter: 'blur(12px)',
-        borderRadius: '14px',
-        border: '1px solid rgba(255, 255, 255, 0.08)'
+        marginBottom: '24px',
+        padding: '14px 20px',
+        background: '#FFFFFF',
+        borderRadius: '16px',
+        border: '1px solid #E3E7DD',
+        boxShadow: '0 2px 10px rgba(36, 51, 47, 0.04)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{
-            background: 'linear-gradient(135deg, #14b8a6, #6366f1)',
-            width: '34px',
-            height: '34px',
-            borderRadius: '9px',
+            background: '#245B52',
+            width: '38px',
+            height: '38px',
+            borderRadius: '10px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#fff',
-            boxShadow: '0 4px 12px rgba(20, 184, 166, 0.25)'
+            color: '#FFFFFF',
+            boxShadow: '0 2px 8px rgba(36, 91, 82, 0.2)'
           }}>
-            <Compass size={20} />
+            <Compass size={22} />
           </div>
           <div>
-            <div style={{ fontWeight: 700, fontSize: '15px', color: '#f8fafc' }}>AI-Based Student Wellness Detection</div>
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', color: '#24332F', letterSpacing: '-0.2px' }}>
+              Student Mental Wellness Detection
+            </div>
+            <div style={{ fontSize: '11px', color: '#63736B', fontWeight: 500 }}>
               {currentUser
                 ? `${currentUser.role.toUpperCase()} PORTAL • ACTIVE SESSION`
                 : 'AUTHENTICATION GATE • SECURE ACCESS REQUIRED'}
@@ -253,7 +255,7 @@ export default function App() {
         </div>
 
         {/* User Session Chip & Role Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {currentUser ? (
             <>
               <span
@@ -264,20 +266,20 @@ export default function App() {
                   padding: '6px 12px',
                   borderRadius: '10px',
                   fontSize: '12px',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   background:
                     currentUser.role === 'student'
-                      ? 'rgba(20, 184, 166, 0.15)'
+                      ? '#DDE9DF'
                       : currentUser.role === 'counsellor'
-                      ? 'rgba(99, 102, 241, 0.15)'
-                      : 'rgba(245, 158, 11, 0.15)',
+                      ? '#E8E1F5'
+                      : '#F5E4DE',
                   color:
                     currentUser.role === 'student'
-                      ? 'var(--teal-light)'
+                      ? '#245B52'
                       : currentUser.role === 'counsellor'
-                      ? '#a5b4fc'
-                      : '#fde047',
-                  border: '1px solid rgba(255,255,255,0.08)'
+                      ? '#4C3B70'
+                      : '#7C3B2B',
+                  border: '1px solid transparent'
                 }}
               >
                 {currentUser.role === 'student' && `🎓 Student: ${currentUser.user?.student_id || studentId}`}
@@ -290,7 +292,7 @@ export default function App() {
                 onClick={handleSwitchAccount}
                 className="btn-secondary"
                 style={{
-                  padding: '6px 12px',
+                  padding: '7px 13px',
                   fontSize: '12px',
                   fontWeight: 600,
                   display: 'flex',
@@ -308,10 +310,11 @@ export default function App() {
                 onClick={handleLogout}
                 className="btn-secondary"
                 style={{
-                  padding: '6px 12px',
+                  padding: '7px 13px',
                   fontSize: '12px',
                   fontWeight: 600,
-                  color: '#fda4af',
+                  color: '#A8483B',
+                  borderColor: '#F0D5D0',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px'
@@ -323,8 +326,8 @@ export default function App() {
               </button>
             </>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#94a3b8' }}>
-              <Lock size={14} color="var(--teal-light)" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#63736B' }}>
+              <Lock size={14} color="#245B52" />
               <span>Please sign in with your credentials</span>
             </div>
           )}
@@ -349,29 +352,29 @@ export default function App() {
             gap: '16px',
             marginBottom: '24px',
             paddingBottom: '20px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            borderBottom: '1px solid #E3E7DD'
           }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <div style={{
-            background: 'linear-gradient(135deg, #14b8a6, #6366f1)',
-            width: '44px',
-            height: '44px',
-            borderRadius: '14px',
+            background: '#245B52',
+            width: '46px',
+            height: '46px',
+            borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#fff',
-            boxShadow: '0 8px 20px rgba(20, 184, 166, 0.3)'
+            color: '#FFFFFF',
+            boxShadow: '0 4px 12px rgba(36, 91, 82, 0.2)'
           }}>
             <Compass size={26} />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <h1 style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-0.5px' }}>Drift</h1>
-              <span className="badge badge-teal" style={{ fontSize: '10px' }}>Personal Early-Warning</span>
+              <h1 style={{ fontSize: '24px', fontWeight: '700', letterSpacing: '-0.3px', color: '#24332F' }}>Drift</h1>
+              <span className="badge badge-teal" style={{ fontSize: '11px' }}>Personal Early-Warning</span>
             </div>
-            <p style={{ fontSize: '13px', color: '#94a3b8' }}>
-              We notice when you quietly drift from your own normal.
+            <p style={{ fontSize: '13px', color: '#63736B', marginTop: '2px' }}>
+              Noticing quiet shifts from your personal normal, respectfully and privately.
             </p>
           </div>
         </div>
@@ -382,16 +385,18 @@ export default function App() {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(255, 255, 255, 0.04)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            padding: '6px 12px',
+            background: '#FFFFFF',
+            border: '1px solid #E3E7DD',
+            padding: '7px 13px',
             borderRadius: '10px',
-            fontSize: '12px'
+            fontSize: '12px',
+            color: '#24332F',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.02)'
           }}>
-            <UserCheck size={16} color="#2dd4bf" />
+            <UserCheck size={16} color="#245B52" />
             <span>ID: <strong>{studentId}</strong></span>
             {dashboard?.student?.department && (
-              <span style={{ color: '#94a3b8' }}>• {dashboard.student.department}</span>
+              <span style={{ color: '#63736B' }}>• {dashboard.student.department}</span>
             )}
           </div>
 
@@ -401,7 +406,7 @@ export default function App() {
             onClick={() => setEvalOpen(true)}
             style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
           >
-            <BarChart2 size={15} />
+            <BarChart2 size={15} color="#245B52" />
             <span>Evaluation Results</span>
           </button>
 
@@ -413,35 +418,41 @@ export default function App() {
             style={{
               background:
                 activeAlertSummary?.status === 'accepted'
-                  ? 'linear-gradient(135deg, #10b981, #059669)'
+                  ? '#DDE9DF'
                   : activeAlertSummary?.status === 'open'
-                  ? 'linear-gradient(135deg, #ef4444, #dc2626)'
-                  : 'rgba(239, 68, 68, 0.15)',
+                  ? '#E9B9A9'
+                  : '#FFFFFF',
               border:
-                activeAlertSummary
-                  ? '1px solid transparent'
-                  : '1px solid rgba(239, 68, 68, 0.35)',
-              color: activeAlertSummary ? '#ffffff' : '#fda4af',
+                activeAlertSummary?.status === 'accepted'
+                  ? '1px solid #245B52'
+                  : activeAlertSummary?.status === 'open'
+                  ? '1px solid #C85A48'
+                  : '1px solid #E3E7DD',
+              color:
+                activeAlertSummary?.status === 'accepted'
+                  ? '#245B52'
+                  : activeAlertSummary?.status === 'open'
+                  ? '#8B2C1F'
+                  : '#24332F',
               padding: '8px 14px',
               borderRadius: '10px',
               fontSize: '12px',
-              fontWeight: '700',
+              fontWeight: '600',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              boxShadow: activeAlertSummary ? '0 0 16px rgba(239, 68, 68, 0.45)' : 'none',
               transition: 'all 0.2s ease'
             }}
-            title="Broadcast emergency/distress alert to campus counsellors"
+            title="Connect with campus wellness counsellors"
           >
-            <Radio size={15} className={activeAlertSummary?.status === 'open' ? 'pulse-anim' : ''} />
+            <Radio size={15} color={activeAlertSummary?.status === 'open' ? '#8B2C1F' : '#245B52'} />
             <span>
               {activeAlertSummary?.status === 'accepted'
                 ? '🟢 Counsellor Connected (Chat)'
                 : activeAlertSummary?.status === 'open'
-                ? '🚨 Alert Broadcasting...'
-                : '🚨 Counsellor Alert'}
+                ? 'Connecting to Counsellor...'
+                : 'Counsellor Alert'}
             </span>
           </button>
 
@@ -449,10 +460,10 @@ export default function App() {
             type="button"
             onClick={() => setManualSupportTriggered(true)}
             style={{
-              background: 'rgba(244, 63, 94, 0.15)',
-              border: '1px solid rgba(244, 63, 94, 0.3)',
-              color: '#fda4af',
-              padding: '8px 12px',
+              background: '#FDF2F0',
+              border: '1px solid #F0C4BC',
+              color: '#8B2C1F',
+              padding: '8px 13px',
               borderRadius: '10px',
               fontSize: '12px',
               fontWeight: '600',
@@ -462,7 +473,7 @@ export default function App() {
               gap: '6px'
             }}
           >
-            <LifeBuoy size={15} />
+            <LifeBuoy size={15} color="#8B2C1F" />
             <span>Need Support?</span>
           </button>
 
@@ -470,7 +481,7 @@ export default function App() {
             type="button"
             className="btn-secondary"
             onClick={() => setDeleteOpen(true)}
-            style={{ padding: '8px', color: '#94a3b8' }}
+            style={{ padding: '8px', color: '#63736B' }}
             title="Privacy: Delete my data"
           >
             <Trash2 size={16} />
@@ -481,18 +492,19 @@ export default function App() {
       {/* Safety Alert Banner */}
       {isSafetyActive && (
         <div style={{
-          background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(245, 158, 11, 0.15))',
-          border: '1px solid rgba(244, 63, 94, 0.35)',
+          background: '#FFF8F6',
+          border: '1px solid #E9B9A9',
           borderRadius: '16px',
           padding: '20px',
           marginBottom: '24px',
           display: 'flex',
           alignItems: 'flex-start',
-          gap: '16px'
+          gap: '16px',
+          boxShadow: '0 2px 10px rgba(233, 185, 169, 0.2)'
         }}>
           <div style={{
-            background: '#f43f5e',
-            color: '#fff',
+            background: '#E9B9A9',
+            color: '#7C2D12',
             padding: '10px',
             borderRadius: '12px',
             flexShrink: 0
@@ -501,20 +513,20 @@ export default function App() {
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#fda4af' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#24332F' }}>
                 Supportive Care & Campus Connection
               </h3>
               {manualSupportTriggered && (
                 <button
                   type="button"
                   onClick={() => setManualSupportTriggered(false)}
-                  style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: '12px', cursor: 'pointer' }}
+                  style={{ background: 'none', border: 'none', color: '#63736B', fontSize: '12px', cursor: 'pointer', fontWeight: 500 }}
                 >
                   Dismiss
                 </button>
               )}
             </div>
-            <p style={{ fontSize: '13px', color: '#f1f5f9', lineHeight: '1.5', marginBottom: '12px' }}>
+            <p style={{ fontSize: '13px', color: '#4A5B53', lineHeight: '1.5', marginBottom: '14px' }}>
               {manualSupportTriggered
                 ? "You reached out for support. You don't have to carry stressful moments on your own. Confidential campus and community contacts are ready for you right now."
                 : safetyInfo.message}
@@ -523,53 +535,47 @@ export default function App() {
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                gap: '10px',
+                gap: '12px',
                 fontSize: '12px',
-                background: 'rgba(0, 0, 0, 0.25)',
-                padding: '12px',
-                borderRadius: '10px',
-                color: '#cbd5e1'
+                background: '#FFFFFF',
+                border: '1px solid #E3E7DD',
+                padding: '14px',
+                borderRadius: '12px',
+                color: '#24332F'
               }}>
                 <div>
-                  <strong style={{ color: '#2dd4bf' }}>{counsellorContact.title}</strong>
-                  <p>{counsellorContact.location}</p>
+                  <strong style={{ color: '#245B52' }}>{counsellorContact.title}</strong>
+                  <p style={{ color: '#63736B', marginTop: '2px' }}>{counsellorContact.location}</p>
                 </div>
                 <div>
                   <p><strong>Phone:</strong> {counsellorContact.phone}</p>
-                  <p><strong>Email:</strong> {counsellorContact.email}</p>
+                  <p style={{ color: '#63736B' }}><strong>Email:</strong> {counsellorContact.email}</p>
                 </div>
                 <div>
-                  <p style={{ color: '#fbbf24', fontWeight: '700' }}>{counsellorContact.helpline_24_7}</p>
-                  <p>{counsellorContact.hours}</p>
+                  <p style={{ color: '#8B2C1F', fontWeight: '700' }}>{counsellorContact.helpline_24_7}</p>
+                  <p style={{ color: '#63736B' }}>{counsellorContact.hours}</p>
                 </div>
               </div>
             )}
-            <div style={{ marginTop: '12px' }}>
+            <div style={{ marginTop: '14px' }}>
               <button
                 type="button"
                 onClick={() => setAlertModalOpen(true)}
+                className="btn-primary"
                 style={{
-                  background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '9px 16px',
                   fontSize: '12px',
-                  fontWeight: 700,
-                  cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 12px rgba(239, 68, 68, 0.3)'
+                  gap: '8px'
                 }}
               >
-                <Radio size={14} className={activeAlertSummary?.status === 'open' ? 'pulse-anim' : ''} />
+                <Radio size={14} />
                 <span>
                   {activeAlertSummary?.status === 'accepted'
-                    ? '🟢 Enter Live 1-on-1 Counsellor Session'
+                    ? 'Enter Live 1-on-1 Counsellor Session'
                     : activeAlertSummary?.status === 'open'
-                    ? '🚨 View Broadcast Status (Pending Acceptance)'
-                    : '🚨 Broadcast Distress Alert to All Campus Counsellors'}
+                    ? 'View Broadcast Status (Pending Acceptance)'
+                    : 'Connect with Available Counsellor'}
                 </span>
               </button>
             </div>
@@ -584,39 +590,41 @@ export default function App() {
         justifyContent: 'space-between',
         flexWrap: 'wrap',
         gap: '16px',
-        background: 'rgba(255, 255, 255, 0.02)',
-        border: '1px solid rgba(255, 255, 255, 0.06)',
-        borderRadius: '14px',
-        padding: '14px 18px',
-        marginBottom: '20px'
+        background: '#FFFFFF',
+        border: '1px solid #E3E7DD',
+        borderRadius: '16px',
+        padding: '16px 20px',
+        marginBottom: '24px',
+        boxShadow: '0 2px 8px rgba(36, 51, 47, 0.03)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span className={`badge ${concernBadge.class}`}>
             {concernBadge.text}
           </span>
-          <span style={{ fontSize: '13px', color: '#cbd5e1' }}>
-            Day <strong>{dashboard?.total_days_tracked || 1}</strong> of personal wellness tracking
+          <span style={{ fontSize: '13px', color: '#63736B' }}>
+            Day <strong style={{ color: '#24332F' }}>{dashboard?.total_days_tracked || 1}</strong> of personal wellness tracking
           </span>
         </div>
 
         {/* Baseline Confidence Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: '280px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: '280px' }}>
           <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#94a3b8', marginBottom: '4px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#63736B', marginBottom: '6px' }}>
               <span>Baseline Confidence</span>
-              <strong style={{ color: '#2dd4bf' }}>{Math.round((dashboard?.overall_confidence || 0) * 100)}%</strong>
+              <strong style={{ color: '#245B52' }}>{Math.round((dashboard?.overall_confidence || 0) * 100)}%</strong>
             </div>
-            <div style={{ height: '6px', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+            <div style={{ height: '7px', background: '#E3E7DD', borderRadius: '4px', overflow: 'hidden' }}>
               <div style={{
                 height: '100%',
                 width: `${Math.round((dashboard?.overall_confidence || 0) * 100)}%`,
-                background: 'linear-gradient(90deg, #14b8a6, #6366f1)',
+                background: '#245B52',
+                borderRadius: '4px',
                 transition: 'width 0.4s ease'
               }} />
             </div>
           </div>
-          <span style={{ fontSize: '11px', color: '#94a3b8' }}>
-            {dashboard?.overall_confidence >= 1.0 ? 'Cold-Start Cleared' : 'Learning Normal'}
+          <span style={{ fontSize: '11px', color: '#63736B', fontWeight: 500 }}>
+            {dashboard?.overall_confidence >= 1.0 ? 'Baseline Established' : 'Calibrating Baseline'}
           </span>
         </div>
       </div>
@@ -673,13 +681,14 @@ export default function App() {
       {/* Universal Mandatory Footer */}
       <footer style={{
         marginTop: 'auto',
-        paddingTop: '24px',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        paddingTop: '28px',
+        paddingBottom: '20px',
+        borderTop: '1px solid #E3E7DD',
         textAlign: 'center',
         fontSize: '12px',
-        color: '#94a3b8'
+        color: '#63736B'
       }}>
-        <p style={{ fontWeight: '600', color: '#cbd5e1', marginBottom: '4px' }}>
+        <p style={{ fontWeight: '600', color: '#24332F', marginBottom: '4px' }}>
           Educational wellness-support prototype. Not a medical diagnostic tool.
         </p>
         <p>
@@ -748,22 +757,22 @@ export default function App() {
             position: 'fixed',
             bottom: '24px',
             right: '24px',
-            background: 'linear-gradient(135deg, #6366f1, #14b8a6)',
+            background: '#245B52',
             color: '#ffffff',
             border: 'none',
-            borderRadius: '30px',
+            borderRadius: '28px',
             padding: '12px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
-            fontWeight: '700',
+            fontWeight: '600',
             fontSize: '13px',
-            boxShadow: '0 8px 25px rgba(99, 102, 241, 0.45)',
+            boxShadow: '0 4px 16px rgba(36, 91, 82, 0.25)',
             cursor: 'pointer',
             zIndex: 999,
             transition: 'all 0.2s ease'
           }}
-          title="Open Drift Real-Time Wellness Chatbot"
+          title="Open Drift Wellness Assistant"
         >
           <MessageCircle size={18} />
           <span>Chat with Drift AI</span>
@@ -772,8 +781,8 @@ export default function App() {
               width: '8px',
               height: '8px',
               borderRadius: '50%',
-              background: '#10b981',
-              boxShadow: '0 0 8px #10b981'
+              background: '#DDE9DF',
+              border: '2px solid #245B52'
             }}
           />
         </button>

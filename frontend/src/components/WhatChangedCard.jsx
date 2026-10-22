@@ -13,16 +13,16 @@ export default function WhatChangedCard({ whatChanged }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
         <div>
           <span className="badge badge-teal" style={{ marginBottom: '4px' }}>Shift Analysis</span>
-          <h3 style={{ fontSize: '16px', fontWeight: '700' }}>What Changed? (7d vs Prior 14d)</h3>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#24332F' }}>What Changed? (7d vs Prior 14d)</h3>
         </div>
         {meaningful_count > 0 && (
           <span style={{
-            background: 'rgba(245, 158, 11, 0.15)',
-            border: '1px solid rgba(245, 158, 11, 0.3)',
-            color: '#fbbf24',
+            background: '#E8E1F5',
+            border: '1px solid #D5C8EA',
+            color: '#4C3B70',
             fontSize: '11px',
             fontWeight: '600',
-            padding: '3px 8px',
+            padding: '4px 10px',
             borderRadius: '12px'
           }}>
             {meaningful_count} Meaningful {meaningful_count === 1 ? 'Shift' : 'Shifts'}
@@ -31,12 +31,13 @@ export default function WhatChangedCard({ whatChanged }) {
       </div>
 
       <div style={{
-        background: 'rgba(255, 255, 255, 0.03)',
+        background: '#FAFBF9',
         borderRadius: '10px',
-        padding: '10px 12px',
+        padding: '12px 14px',
         fontSize: '13px',
-        color: '#f1f5f9',
-        borderLeft: '3px solid #14b8a6',
+        color: '#24332F',
+        border: '1px solid #E3E7DD',
+        borderLeft: '3px solid #245B52',
         marginBottom: '14px',
         fontWeight: '500'
       }}>
@@ -48,8 +49,8 @@ export default function WhatChangedCard({ whatChanged }) {
           const isUp = item.delta > 0;
           const isSteady = Math.abs(item.delta) <= 0.05;
           const iconColor = item.is_meaningful
-            ? (item.metric === 'stress' ? '#f43f5e' : (item.metric === 'sleep' ? '#f43f5e' : '#2dd4bf'))
-            : '#94a3b8';
+            ? (item.metric === 'stress' ? '#8B2C1F' : (item.metric === 'sleep' ? '#8B2C1F' : '#245B52'))
+            : '#63736B';
 
           return (
             <div
@@ -58,10 +59,10 @@ export default function WhatChangedCard({ whatChanged }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '10px 12px',
+                padding: '10px 14px',
                 borderRadius: '10px',
-                background: item.is_meaningful ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.02)',
-                border: item.is_meaningful ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent'
+                background: item.is_meaningful ? '#FBF9F7' : '#FFFFFF',
+                border: item.is_meaningful ? '1px solid #E9B9A9' : '1px solid #E3E7DD'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -72,10 +73,10 @@ export default function WhatChangedCard({ whatChanged }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'rgba(255, 255, 255, 0.04)'
+                  background: item.is_meaningful ? '#F6F5EF' : '#F6F5EF'
                 }}>
                   {isSteady ? (
-                    <ArrowRight size={16} color="#94a3b8" />
+                    <ArrowRight size={16} color="#63736B" />
                   ) : isUp ? (
                     <ArrowUpRight size={16} color={iconColor} />
                   ) : (
@@ -83,10 +84,10 @@ export default function WhatChangedCard({ whatChanged }) {
                   )}
                 </div>
                 <div>
-                  <span style={{ fontSize: '13px', fontWeight: '600', color: '#f8fafc', textTransform: 'capitalize' }}>
+                  <span style={{ fontSize: '13px', fontWeight: '600', color: '#24332F', textTransform: 'capitalize' }}>
                     {item.metric}
                   </span>
-                  <div style={{ fontSize: '11px', color: '#94a3b8' }}>
+                  <div style={{ fontSize: '11px', color: '#63736B' }}>
                     7d: {item.recent_mean} • Prior: {item.prev_mean}
                   </div>
                 </div>
@@ -96,12 +97,12 @@ export default function WhatChangedCard({ whatChanged }) {
                 <span style={{
                   fontSize: '13px',
                   fontWeight: '700',
-                  color: item.is_meaningful ? iconColor : '#cbd5e1'
+                  color: item.is_meaningful ? iconColor : '#24332F'
                 }}>
                   {item.delta > 0 ? `+${item.delta}` : item.delta}
                 </span>
                 {item.is_meaningful && (
-                  <div style={{ fontSize: '10px', color: '#f59e0b', fontWeight: '600' }}>
+                  <div style={{ fontSize: '10px', color: '#8B2C1F', fontWeight: '600' }}>
                     Meaningful
                   </div>
                 )}

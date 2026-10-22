@@ -26,28 +26,28 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
   };
 
   return (
-    <div className="drift-card" id="time-travel-slider-card" style={{ marginBottom: '24px', background: 'rgba(15, 23, 42, 0.85)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+    <div className="drift-card" id="time-travel-slider-card" style={{ marginBottom: '24px', background: '#FFFFFF', border: '1px solid #E3E7DD' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
-            background: 'rgba(20, 184, 166, 0.15)',
+            background: '#DDE9DF',
             padding: '6px',
             borderRadius: '8px',
-            color: '#2dd4bf'
+            color: '#245B52'
           }}>
             <FastForward size={18} />
           </div>
           <div>
             <span className="badge badge-teal" style={{ marginBottom: '2px' }}>Interactive Demo Slider</span>
-            <h3 style={{ fontSize: '15px', fontWeight: '700' }}>Time-Travel Simulation</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#24332F' }}>Time-Travel Simulation</h3>
           </div>
         </div>
 
         <div style={{ textAlign: 'right' }}>
-          <span style={{ fontSize: '14px', fontWeight: '700', color: '#2dd4bf' }}>
+          <span style={{ fontSize: '14px', fontWeight: '700', color: '#245B52' }}>
             Week {currentWeek} (Day {activeIdx + 1})
           </span>
-          <div style={{ fontSize: '11px', color: '#94a3b8' }}>
+          <div style={{ fontSize: '11px', color: '#63736B' }}>
             {currentDate}
           </div>
         </div>
@@ -64,11 +64,11 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
           style={{
             width: '100%',
             height: '8px',
-            accentColor: '#14b8a6',
+            accentColor: '#245B52',
             cursor: 'pointer'
           }}
         />
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#94a3b8', marginTop: '6px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#63736B', marginTop: '6px' }}>
           <span>Day 1 (Baseline Start)</span>
           <span>Week 3 (Stable)</span>
           <span>Week 5 (Quiet Drift)</span>
@@ -78,11 +78,11 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
       </div>
 
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-        <span style={{ fontSize: '12px', color: '#94a3b8', marginRight: '4px' }}>Demo Shortcuts:</span>
+        <span style={{ fontSize: '12px', color: '#63736B', marginRight: '4px' }}>Demo Shortcuts:</span>
         <button
           type="button"
           className="btn-secondary"
-          style={{ fontSize: '11px', padding: '4px 10px' }}
+          style={{ fontSize: '11px', padding: '5px 10px' }}
           onClick={() => handleQuickJump(2)}
         >
           Week 2 (Stable Normal)
@@ -90,7 +90,7 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
         <button
           type="button"
           className="btn-secondary"
-          style={{ fontSize: '11px', padding: '4px 10px', borderColor: 'rgba(20, 184, 166, 0.4)' }}
+          style={{ fontSize: '11px', padding: '5px 10px', borderColor: '#CBD4C2' }}
           onClick={() => handleQuickJump(4)}
         >
           Week 4 (Sleep Drift Starts)
@@ -98,7 +98,7 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
         <button
           type="button"
           className="btn-secondary"
-          style={{ fontSize: '11px', padding: '4px 10px', borderColor: 'rgba(245, 158, 11, 0.5)' }}
+          style={{ fontSize: '11px', padding: '5px 10px', borderColor: '#E9B9A9', color: '#8B2C1F' }}
           onClick={() => handleQuickJump(5)}
         >
           Week 5 (Drift Alert Active)
@@ -106,7 +106,7 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
         <button
           type="button"
           className="btn-secondary"
-          style={{ fontSize: '11px', padding: '4px 10px', borderColor: 'rgba(99, 102, 241, 0.4)' }}
+          style={{ fontSize: '11px', padding: '5px 10px', borderColor: '#D5C8EA', color: '#4C3B70' }}
           onClick={() => handleQuickJump(6)}
         >
           Week 6 (Workload Pattern)
@@ -114,7 +114,7 @@ export default function TimeTravelSlider({ availableDates, currentDate, onDateCh
         <button
           type="button"
           className="btn-secondary"
-          style={{ fontSize: '11px', padding: '4px 10px', marginLeft: 'auto' }}
+          style={{ fontSize: '11px', padding: '5px 10px', marginLeft: 'auto' }}
           onClick={() => onDateChange(availableDates[availableDates.length - 1])}
         >
           <RotateCcw size={12} style={{ marginRight: '4px' }} />
