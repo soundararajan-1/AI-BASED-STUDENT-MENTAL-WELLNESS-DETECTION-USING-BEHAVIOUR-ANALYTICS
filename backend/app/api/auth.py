@@ -82,12 +82,27 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> Dict[str, Any
                 detail=f"Student profile '{student.student_id}' verification was declined by the administrator."
             )
 
-        # Check password if configured
+        # Enforce student passcode
+        if not password:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Passcode is required to access your account. (Default student passcode: student123)"
+            )
+
         if student.password and student.password.strip():
             if password != student.password.strip():
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Invalid student passcode."
+                )
+        else:
+            if password == "student123" or len(password) >= 4:
+                student.password = password
+                db.commit()
+            else:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid passcode. Default passcode is student123."
                 )
 
         return {
@@ -106,9 +121,15 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> Dict[str, Any
 
     # 2. Counsellor Login
     elif role == "counsellor":
+        if not password:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Counsellor password is required. (Default password: counsellor123)"
+            )
+
         # Check master demo counsellor
         if identifier == "counsellor@campus.edu":
-            if password and password != "counsellor123":
+            if password != "counsellor123":
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Invalid password for default counsellor (counsellor123)."
@@ -131,19 +152,6 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> Dict[str, Any
         # Check registered counsellor in database
         counsellor = db.query(CounsellorUser).filter(func.lower(CounsellorUser.email) == identifier.lower()).first()
         if not counsellor:
-            # Fallback for generic counsellor demo identifiers
-            if "counsellor" in identifier.lower() and (password == "counsellor123" or not password):
-                return {
-                    "token": "sess-counsellor-campus",
-                    "role": "counsellor",
-                    "user": {
-                        "name": "Campus Wellness Counsellor",
-                        "email": identifier,
-                        "specialization": "General Student Support",
-                        "status": "approved"
-                    },
-                    "message": "Counsellor authenticated with k-anonymity aggregate access."
-                }
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"Counsellor '{identifier}' not found. Please register for counsellor credentials."
@@ -181,14 +189,19 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> Dict[str, Any
 
     # 3. Admin Login
     elif role == "admin":
-        is_valid = (
-            (identifier in ["admin", "admin@campus.edu"] and (password in ["admin123", "admin", ""])) or
-            ("admin" in identifier.lower())
-        )
-        if not is_valid and password != "":
+        if not password:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid administrator credentials. Demo: admin@campus.edu / admin123"
+                detail="Administrator master password is required. (Default: admin123)"
+            )
+        is_valid = (
+            (identifier in ["admin", "admin@campus.edu"] and password == "admin123") or
+            ("admin" in identifier.lower() and password == "admin123")
+        )
+        if not is_valid:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid administrator credentials. (Default: admin@campus.edu / admin123)"
             )
 
         return {

@@ -14,7 +14,11 @@ import {
   Building2,
   SlidersHorizontal,
   MessageCircle,
-  Radio
+  Radio,
+  LogOut,
+  Lock,
+  Key,
+  User
 } from 'lucide-react';
 
 import {
@@ -48,16 +52,36 @@ import CounsellorPortalPage from './pages/CounsellorPortalPage';
 import AdminPortalPage from './pages/AdminPortalPage';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState('home'); // 'home' | 'login' | 'dashboard' | 'counsellor' | 'admin'
   const [currentUser, setCurrentUser] = useState(() => {
-    return {
-      role: 'student',
-      identifier: 'S001',
-      token: 'sess-student-S001',
-      user: { student_id: 'S001', department: 'Computer Science', year: 2 }
-    };
+    try {
+      const saved = sessionStorage.getItem('drift_auth');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
   });
-  const [studentId, setStudentId] = useState('S001');
+  const [currentView, setCurrentView] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('drift_auth');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.role === 'student') return 'dashboard';
+        if (parsed.role === 'counsellor') return 'counsellor';
+        if (parsed.role === 'admin') return 'admin';
+      }
+    } catch {}
+    return 'login';
+  });
+  const [studentId, setStudentId] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('drift_auth');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.user?.student_id || 'S001';
+      }
+    } catch {}
+    return 'S001';
+  });
   const [asOfDate, setAsOfDate] = useState(null);
   const [dashboard, setDashboard] = useState(null);
   const [insight, setInsight] = useState(null);
@@ -154,6 +178,9 @@ export default function App() {
 
   const handleLoginSuccess = (authData) => {
     setCurrentUser(authData);
+    try {
+      sessionStorage.setItem('drift_auth', JSON.stringify(authData));
+    } catch {}
     if (authData.role === 'student') {
       const sid = authData.user?.student_id || 'S001';
       setStudentId(sid);
@@ -166,8 +193,19 @@ export default function App() {
     }
   };
 
+  const handleSwitchAccount = () => {
+    setCurrentUser(null);
+    try {
+      sessionStorage.removeItem('drift_auth');
+    } catch {}
+    setCurrentView('login');
+  };
+
   const handleLogout = () => {
     setCurrentUser(null);
+    try {
+      sessionStorage.removeItem('drift_auth');
+    } catch {}
     setCurrentView('login');
   };
 
@@ -176,7 +214,7 @@ export default function App() {
   return (
     <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '24px 20px', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* Top Global Navigation Bar with Multi-Role Portals */}
+      {/* Top Global Navigation Bar - Secure & Role-Scoped */}
       <nav style={{
         display: 'flex',
         alignItems: 'center',
@@ -193,165 +231,113 @@ export default function App() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
             background: 'linear-gradient(135deg, #14b8a6, #6366f1)',
-            width: '32px',
-            height: '32px',
-            borderRadius: '8px',
+            width: '34px',
+            height: '34px',
+            borderRadius: '9px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#fff'
+            color: '#fff',
+            boxShadow: '0 4px 12px rgba(20, 184, 166, 0.25)'
           }}>
-            <Compass size={18} />
+            <Compass size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 700, fontSize: '14px' }}>AI-Based Student Wellness Detection</div>
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Multi-Role Campus Wellness Platform</div>
+            <div style={{ fontWeight: 700, fontSize: '15px', color: '#f8fafc' }}>AI-Based Student Wellness Detection</div>
+            <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+              {currentUser
+                ? `${currentUser.role.toUpperCase()} PORTAL • ACTIVE SESSION`
+                : 'AUTHENTICATION GATE • SECURE ACCESS REQUIRED'}
+            </div>
           </div>
         </div>
 
-        {/* View Switchers */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-          <button
-            type="button"
-            onClick={() => setCurrentView('home')}
-            style={{
-              padding: '6px 12px',
-              borderRadius: '8px',
-              fontSize: '12px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: currentView === 'home' ? '1px solid var(--teal-primary)' : '1px solid rgba(255, 255, 255, 0.08)',
-              background: currentView === 'home' ? 'rgba(20, 184, 166, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-              color: currentView === 'home' ? '#2dd4bf' : 'var(--text-muted)'
-            }}
-          >
-            Overview
-          </button>
+        {/* User Session Chip & Role Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {currentUser ? (
+            <>
+              <span
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '6px 12px',
+                  borderRadius: '10px',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  background:
+                    currentUser.role === 'student'
+                      ? 'rgba(20, 184, 166, 0.15)'
+                      : currentUser.role === 'counsellor'
+                      ? 'rgba(99, 102, 241, 0.15)'
+                      : 'rgba(245, 158, 11, 0.15)',
+                  color:
+                    currentUser.role === 'student'
+                      ? 'var(--teal-light)'
+                      : currentUser.role === 'counsellor'
+                      ? '#a5b4fc'
+                      : '#fde047',
+                  border: '1px solid rgba(255,255,255,0.08)'
+                }}
+              >
+                {currentUser.role === 'student' && `🎓 Student: ${currentUser.user?.student_id || studentId}`}
+                {currentUser.role === 'counsellor' && `🩺 Counsellor: ${currentUser.user?.name || 'Staff'}`}
+                {currentUser.role === 'admin' && `🛡️ Administrator: ${currentUser.user?.email || 'admin'}`}
+              </span>
 
-          <button
-            type="button"
-            onClick={() => setCurrentView('dashboard')}
-            style={{
-              padding: '6px 12px',
-              borderRadius: '8px',
-              fontSize: '12px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: currentView === 'dashboard' ? '1px solid var(--teal-primary)' : '1px solid rgba(255, 255, 255, 0.08)',
-              background: currentView === 'dashboard' ? 'rgba(20, 184, 166, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-              color: currentView === 'dashboard' ? '#2dd4bf' : 'var(--text-muted)'
-            }}
-          >
-            Student Dashboard
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setCurrentView('counsellor')}
-            style={{
-              padding: '6px 12px',
-              borderRadius: '8px',
-              fontSize: '12px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: currentView === 'counsellor' ? '1px solid var(--indigo-primary)' : '1px solid rgba(255, 255, 255, 0.08)',
-              background: currentView === 'counsellor' ? 'rgba(99, 102, 241, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-              color: currentView === 'counsellor' ? '#a5b4fc' : 'var(--text-muted)'
-            }}
-          >
-            Counsellor Portal
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setCurrentView('admin')}
-            style={{
-              padding: '6px 12px',
-              borderRadius: '8px',
-              fontSize: '12px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: currentView === 'admin' ? '1px solid #f59e0b' : '1px solid rgba(255, 255, 255, 0.08)',
-              background: currentView === 'admin' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-              color: currentView === 'admin' ? '#fde047' : 'var(--text-muted)'
-            }}
-          >
-            Admin Console
-          </button>
-
-          {/* User Session Chip & Login/Logout */}
-          <div style={{ marginLeft: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            {currentUser ? (
-              <>
-                <span
-                  style={{
-                    padding: '4px 10px',
-                    borderRadius: '8px',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    background:
-                      currentUser.role === 'student'
-                        ? 'rgba(20, 184, 166, 0.15)'
-                        : currentUser.role === 'counsellor'
-                        ? 'rgba(99, 102, 241, 0.15)'
-                        : 'rgba(245, 158, 11, 0.15)',
-                    color:
-                      currentUser.role === 'student'
-                        ? 'var(--teal-light)'
-                        : currentUser.role === 'counsellor'
-                        ? '#a5b4fc'
-                        : '#fde047',
-                    border: '1px solid rgba(255,255,255,0.08)'
-                  }}
-                >
-                  {currentUser.role === 'student' && `🎓 ${currentUser.user?.student_id || studentId}`}
-                  {currentUser.role === 'counsellor' && '🩺 Counsellor'}
-                  {currentUser.role === 'admin' && '🛡️ Admin'}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setCurrentView('login')}
-                  className="btn-secondary"
-                  style={{ padding: '4px 8px', fontSize: '11px' }}
-                  title="Switch Role"
-                >
-                  Switch
-                </button>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="btn-secondary"
-                  style={{ padding: '4px 8px', fontSize: '11px', color: '#fda4af' }}
-                  title="Sign Out"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
               <button
                 type="button"
-                onClick={() => setCurrentView('login')}
-                className="btn-primary"
-                style={{ padding: '5px 12px', fontSize: '12px' }}
+                onClick={handleSwitchAccount}
+                className="btn-secondary"
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+                title="Switch to another account (Password login required)"
               >
-                Sign In / Portals
+                <Key size={13} />
+                <span>Switch Account</span>
               </button>
-            )}
-          </div>
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="btn-secondary"
+                style={{
+                  padding: '6px 12px',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  color: '#fda4af',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+                title="Sign out of current account"
+              >
+                <LogOut size={13} />
+                <span>Logout</span>
+              </button>
+            </>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#94a3b8' }}>
+              <Lock size={14} color="var(--teal-light)" />
+              <span>Please sign in with your credentials</span>
+            </div>
+          )}
         </div>
       </nav>
 
-      {currentView === 'home' ? (
-        <HomePage
-          onOpenDashboard={() => setCurrentView('dashboard')}
-          onOpenLogin={() => setCurrentView('login')}
-        />
-      ) : currentView === 'login' ? (
+      {/* Primary View Routing - No Public Unauthenticated Demos */}
+      {!currentUser || currentView === 'login' ? (
         <LoginPage onLoginSuccess={handleLoginSuccess} />
-      ) : currentView === 'counsellor' ? (
-        <CounsellorPortalPage counsellorUser={currentUser?.user} onBackToHome={() => setCurrentView('home')} />
-      ) : currentView === 'admin' ? (
-        <AdminPortalPage adminUser={currentUser?.user} onBackToHome={() => setCurrentView('home')} />
+      ) : currentView === 'counsellor' && currentUser?.role === 'counsellor' ? (
+        <CounsellorPortalPage counsellorUser={currentUser?.user} onBackToHome={handleSwitchAccount} />
+      ) : currentView === 'admin' && currentUser?.role === 'admin' ? (
+        <AdminPortalPage adminUser={currentUser?.user} onBackToHome={handleSwitchAccount} />
       ) : (
         <>
           {/* Top Header */}
@@ -408,16 +394,6 @@ export default function App() {
               <span style={{ color: '#94a3b8' }}>• {dashboard.student.department}</span>
             )}
           </div>
-
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={() => setCounsellorOpen(true)}
-            style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
-          >
-            <Building2 size={15} />
-            <span>Counsellor View</span>
-          </button>
 
           <button
             type="button"

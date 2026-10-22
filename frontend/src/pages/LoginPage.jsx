@@ -25,7 +25,7 @@ export default function LoginPage({ onLoginSuccess }) {
   const [successMsg, setSuccessMsg] = useState('');
 
   // Student Form State
-  const [studentId, setStudentId] = useState('S001');
+  const [studentId, setStudentId] = useState('');
   const [studentName, setStudentName] = useState('');
   const [studentPassword, setStudentPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
@@ -34,16 +34,16 @@ export default function LoginPage({ onLoginSuccess }) {
   const [newConsent, setNewConsent] = useState(true);
 
   // Counsellor Form State
-  const [counsellorEmail, setCounsellorEmail] = useState('counsellor@campus.edu');
-  const [counsellorPassword, setCounsellorPassword] = useState('counsellor123');
+  const [counsellorEmail, setCounsellorEmail] = useState('');
+  const [counsellorPassword, setCounsellorPassword] = useState('');
   const [isCounsellorRegistering, setIsCounsellorRegistering] = useState(false);
   const [counsellorName, setCounsellorName] = useState('');
   const [counsellorSpecialization, setCounsellorSpecialization] = useState('Student Psychological Support');
   const [counsellorPhone, setCounsellorPhone] = useState('+1 (800) 273-TALK');
 
   // Admin Form State
-  const [adminUsername, setAdminUsername] = useState('admin@campus.edu');
-  const [adminPassword, setAdminPassword] = useState('admin123');
+  const [adminUsername, setAdminUsername] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
 
   const handleStudentLogin = async (e) => {
     e.preventDefault();
@@ -309,41 +309,6 @@ export default function LoginPage({ onLoginSuccess }) {
               <span className="badge badge-teal">Student Portal</span>
             </div>
 
-            {/* Quick Demo Student Picker (Viva helper) */}
-            {!isRegistering && (
-              <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '12px', padding: '12px 16px', marginBottom: '20px' }}>
-                <div style={{ fontSize: '12px', fontWeight: 600, color: '#94a3b8', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Sparkles size={14} color="var(--teal-light)" /> Quick Demo Profiles (Click to load):
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                  {[
-                    { id: 'S001', label: 'S001 (Demo - Workload Shift)' },
-                    { id: 'S002', label: 'S002 (Balanced Profile)' },
-                    { id: 'S007', label: 'S007 (Psychology Dept)' },
-                    { id: 'S010', label: 'S010 (Electrical Eng)' }
-                  ].map((stu) => (
-                    <button
-                      key={stu.id}
-                      type="button"
-                      onClick={() => setStudentId(stu.id)}
-                      style={{
-                        padding: '6px 12px',
-                        borderRadius: '8px',
-                        fontSize: '12px',
-                        background: studentId === stu.id ? 'rgba(20, 184, 166, 0.25)' : 'rgba(255,255,255,0.06)',
-                        border: studentId === stu.id ? '1px solid var(--teal-light)' : '1px solid rgba(255,255,255,0.1)',
-                        color: studentId === stu.id ? '#ffffff' : '#cbd5e1',
-                        cursor: 'pointer',
-                        fontWeight: 600
-                      }}
-                    >
-                      {stu.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
             <form onSubmit={handleStudentLogin}>
               <div style={{ marginBottom: '16px' }}>
                 <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
@@ -495,7 +460,7 @@ export default function LoginPage({ onLoginSuccess }) {
               {!isRegistering && (
                 <div style={{ marginBottom: '20px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
-                    Passcode <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>(Optional for seeded demo profiles)</span>
+                    Student Passcode <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>(Default: student123)</span>
                   </label>
                   <div style={{ position: 'relative' }}>
                     <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '14px' }} />
@@ -503,7 +468,8 @@ export default function LoginPage({ onLoginSuccess }) {
                       type="password"
                       value={studentPassword}
                       onChange={(e) => setStudentPassword(e.target.value)}
-                      placeholder="e.g. •••••••• (leave blank for demo S001)"
+                      required
+                      placeholder="Enter your student passcode"
                       style={{
                         width: '100%',
                         padding: '12px 14px 12px 38px',
@@ -762,42 +728,28 @@ export default function LoginPage({ onLoginSuccess }) {
                 </>
               )}
 
-              <div style={{ display: 'flex', gap: '12px' }}>
-                {!isCounsellorRegistering && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setCounsellorEmail('counsellor@campus.edu');
-                      setCounsellorPassword('counsellor123');
-                    }}
-                    className="btn-secondary"
-                    style={{ flex: 1, padding: '12px', fontSize: '13px' }}
-                  >
-                    Demo Counsellor
-                  </button>
-                )}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  style={{
-                    flex: 2,
-                    background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
-                    color: '#ffffff',
-                    padding: '12px',
-                    borderRadius: '12px',
-                    fontWeight: 600,
-                    border: 'none',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  {loading ? 'Processing...' : isCounsellorRegistering ? 'Submit Counsellor Application' : 'Enter Counsellor Dashboard'}
-                  <ArrowRight size={18} />
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  width: '100%',
+                  background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                  color: '#ffffff',
+                  padding: '14px',
+                  borderRadius: '12px',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
+              >
+                {loading ? 'Processing...' : isCounsellorRegistering ? 'Submit Counsellor Application' : 'Sign In as Counsellor'}
+                <ArrowRight size={18} />
+              </button>
             </form>
 
             <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '13px', color: 'var(--text-muted)' }}>
@@ -899,40 +851,28 @@ export default function LoginPage({ onLoginSuccess }) {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAdminUsername('admin@campus.edu');
-                    setAdminPassword('admin123');
-                  }}
-                  className="btn-secondary"
-                  style={{ flex: 1, padding: '12px', fontSize: '13px' }}
-                >
-                  Fill Demo Admin Key
-                </button>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  style={{
-                    flex: 2,
-                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    color: '#ffffff',
-                    padding: '12px',
-                    borderRadius: '12px',
-                    fontWeight: 600,
-                    border: 'none',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  {loading ? 'Authenticating...' : 'Enter System Console'}
-                  <ArrowRight size={18} />
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  width: '100%',
+                  background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                  color: '#ffffff',
+                  padding: '14px',
+                  borderRadius: '12px',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
+              >
+                {loading ? 'Authenticating...' : 'Sign In as Administrator'}
+                <ArrowRight size={18} />
+              </button>
             </form>
           </div>
         )}

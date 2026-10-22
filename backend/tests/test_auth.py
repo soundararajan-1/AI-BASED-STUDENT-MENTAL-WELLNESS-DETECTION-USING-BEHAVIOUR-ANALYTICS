@@ -10,11 +10,11 @@ client = TestClient(app)
 
 
 def test_student_login_success():
-    """Verify demo student S001 can authenticate."""
+    """Verify demo student S001 can authenticate with passcode."""
     res = client.post("/auth/login", json={
         "role": "student",
         "identifier": "S001",
-        "password": ""
+        "password": "student123"
     })
     assert res.status_code == 200
     data = res.json()
@@ -23,12 +23,22 @@ def test_student_login_success():
     assert "token" in data
 
 
+def test_student_login_missing_password():
+    """Verify student login fails when password is missing."""
+    res = client.post("/auth/login", json={
+        "role": "student",
+        "identifier": "S001",
+        "password": ""
+    })
+    assert res.status_code == 401
+
+
 def test_student_login_not_found():
     """Verify non-existent student returns 404."""
     res = client.post("/auth/login", json={
         "role": "student",
         "identifier": "NON_EXISTENT_999",
-        "password": ""
+        "password": "pass123"
     })
     assert res.status_code == 404
 
