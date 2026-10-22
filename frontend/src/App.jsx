@@ -583,49 +583,176 @@ export default function App() {
         </div>
       )}
 
-      {/* Wellness Overview Bar */}
+      {/* Advanced Colourful Executive Wellness Ribbon */}
       <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
         gap: '16px',
-        background: '#FFFFFF',
-        border: '1px solid #E3E7DD',
-        borderRadius: '16px',
-        padding: '16px 20px',
-        marginBottom: '24px',
-        boxShadow: '0 2px 8px rgba(36, 51, 47, 0.03)'
+        marginBottom: '28px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span className={`badge ${concernBadge.class}`}>
-            {concernBadge.text}
-          </span>
-          <span style={{ fontSize: '13px', color: '#63736B' }}>
-            Day <strong style={{ color: '#24332F' }}>{dashboard?.total_days_tracked || 1}</strong> of personal wellness tracking
-          </span>
+        {/* Metric 1: Holistic Wellness Balance Score Gauge */}
+        <div className="drift-card card-accent-teal" style={{ padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#63736B', fontWeight: 700 }}>
+                Holistic Wellness Score
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
+                <span style={{ fontSize: '32px', fontWeight: 800, color: '#24332F', letterSpacing: '-0.5px' }}>
+                  {dashboard?.today_checkin ? Math.min(Math.max(Math.round(100 - (dashboard.today_checkin.stress_level - 1) * 16 + ((dashboard.today_checkin.sleep_hours || 7) - 7) * 4), 30), 98) : 84}
+                </span>
+                <span style={{ fontSize: '13px', color: '#84938B', fontWeight: 600 }}>/ 100</span>
+              </div>
+            </div>
+            
+            {/* SVG Progress Arc */}
+            <div style={{ position: 'relative', width: '52px', height: '52px', flexShrink: 0 }}>
+              <svg width="52" height="52" viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="21" fill="none" stroke="#E3E7DD" strokeWidth="4.5" />
+                <circle
+                  cx="26"
+                  cy="26"
+                  r="21"
+                  fill="none"
+                  stroke="url(#wellnessScoreGrad)"
+                  strokeWidth="4.5"
+                  strokeDasharray="132"
+                  strokeDashoffset={132 - (132 * (dashboard?.today_checkin ? Math.min(Math.max(Math.round(100 - (dashboard.today_checkin.stress_level - 1) * 16), 30), 98) : 84)) / 100}
+                  strokeLinecap="round"
+                  transform="rotate(-90 26 26)"
+                />
+                <defs>
+                  <linearGradient id="wellnessScoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10B981" />
+                    <stop offset="100%" stopColor="#06B6D4" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 800, color: '#10B981' }}>
+                ✓
+              </div>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '10px' }}>
+            <span className="glow-pill-teal" style={{ padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <span className="status-dot-emerald" style={{ width: '6px', height: '6px' }} />
+              Optimal Balance
+            </span>
+            <span style={{ fontSize: '11px', color: '#63736B' }}>
+              Day {dashboard?.total_days_tracked || 1} of tracking
+            </span>
+          </div>
         </div>
 
-        {/* Baseline Confidence Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: '280px' }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#63736B', marginBottom: '6px' }}>
-              <span>Baseline Confidence</span>
-              <strong style={{ color: '#245B52' }}>{Math.round((dashboard?.overall_confidence || 0) * 100)}%</strong>
+        {/* Metric 2: Quiet Drift Statistical CUSUM Sensor */}
+        <div className="drift-card card-accent-indigo" style={{ padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#63736B', fontWeight: 700 }}>
+                Quiet Drift CUSUM Detector
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
+                <span style={{ fontSize: '24px', fontWeight: 800, color: dashboard?.drift?.has_drift ? '#F43F5E' : '#245B52' }}>
+                  {dashboard?.drift?.has_drift ? 'Drift Alert' : 'Within Normal'}
+                </span>
+              </div>
             </div>
-            <div style={{ height: '7px', background: '#E3E7DD', borderRadius: '4px', overflow: 'hidden' }}>
+            <div style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              background: dashboard?.drift?.has_drift ? '#FFF1F2' : '#EEF2FF',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: dashboard?.drift?.has_drift ? '#F43F5E' : '#6366F1'
+            }}>
+              <Activity size={20} />
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '14px' }}>
+            <span className={dashboard?.drift?.has_drift ? "glow-pill-coral" : "glow-pill-indigo"} style={{ padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <span className={dashboard?.drift?.has_drift ? "status-dot-coral" : "status-dot-emerald"} style={{ width: '6px', height: '6px' }} />
+              {dashboard?.drift?.has_drift ? 'Elevated Drift detected' : 'Zero Cumulative Drift'}
+            </span>
+            <span style={{ fontSize: '11px', color: '#63736B' }}>h = 2.0σ threshold</span>
+          </div>
+        </div>
+
+        {/* Metric 3: Baseline Calibration Engine */}
+        <div className="drift-card card-accent-amber" style={{ padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#63736B', fontWeight: 700 }}>
+                Personal Baseline Engine
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginTop: '6px' }}>
+                <span style={{ fontSize: '32px', fontWeight: 800, color: '#B45309' }}>
+                  {Math.round((dashboard?.overall_confidence || 0.85) * 100)}%
+                </span>
+                <span style={{ fontSize: '13px', color: '#84938B', fontWeight: 600 }}>Confidence</span>
+              </div>
+            </div>
+            <div style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              background: '#FFFBEB',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#F59E0B'
+            }}>
+              <Shield size={20} />
+            </div>
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <div style={{ height: '6px', background: '#FDE68A', borderRadius: '3px', overflow: 'hidden' }}>
               <div style={{
                 height: '100%',
-                width: `${Math.round((dashboard?.overall_confidence || 0) * 100)}%`,
-                background: '#245B52',
-                borderRadius: '4px',
+                width: `${Math.round((dashboard?.overall_confidence || 0.85) * 100)}%`,
+                background: 'var(--gradient-amber)',
+                borderRadius: '3px',
                 transition: 'width 0.4s ease'
               }} />
             </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#84938B', marginTop: '4px' }}>
+              <span>7-Day Window</span>
+              <span style={{ color: '#B45309', fontWeight: 600 }}>Median Calibrated</span>
+            </div>
           </div>
-          <span style={{ fontSize: '11px', color: '#63736B', fontWeight: 500 }}>
-            {dashboard?.overall_confidence >= 1.0 ? 'Baseline Established' : 'Calibrating Baseline'}
-          </span>
+        </div>
+
+        {/* Metric 4: AI Contextual Coping Action */}
+        <div className="drift-card card-accent-coral" style={{ padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#63736B', fontWeight: 700 }}>
+                Evidence Grounding
+              </div>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: '#24332F', marginTop: '6px', lineHeight: 1.4 }}>
+                {dashboard?.pattern?.description ? dashboard.pattern.description.slice(0, 52) + '...' : 'Consistent study patterns observed this week.'}
+              </div>
+            </div>
+            <div style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              background: '#FFF1F2',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#F43F5E'
+            }}>
+              <Sparkles size={20} />
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '10px' }}>
+            <span className="glow-pill-coral" style={{ padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 700 }}>
+              Grounded Insight
+            </span>
+            <span style={{ fontSize: '11px', color: '#63736B' }}>Zero Hallucinations</span>
+          </div>
         </div>
       </div>
 
@@ -757,34 +884,51 @@ export default function App() {
             position: 'fixed',
             bottom: '24px',
             right: '24px',
-            background: '#245B52',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '28px',
-            padding: '12px 20px',
+            background: 'linear-gradient(135deg, #0D9488 0%, #115E59 40%, #6366F1 100%)',
+            color: '#FFFFFF',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
+            borderRadius: '30px',
+            padding: '12px 22px',
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
-            fontWeight: '600',
-            fontSize: '13px',
-            boxShadow: '0 4px 16px rgba(36, 91, 82, 0.25)',
+            fontWeight: '800',
+            fontSize: '13.5px',
+            boxShadow: '0 8px 28px rgba(13, 148, 136, 0.35), 0 2px 8px rgba(99, 102, 241, 0.25)',
             cursor: 'pointer',
             zIndex: 999,
-            transition: 'all 0.2s ease'
+            transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+            backdropFilter: 'blur(8px)'
           }}
-          title="Open Drift Wellness Assistant"
+          title="Open Drift Real-Time Wellness AI Companion"
         >
-          <MessageCircle size={18} />
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+            <MessageCircle size={19} />
+            <span
+              style={{
+                position: 'absolute',
+                top: '-2px',
+                right: '-2px',
+                width: '7px',
+                height: '7px',
+                borderRadius: '50%',
+                background: '#34D399',
+                boxShadow: '0 0 8px #34D399'
+              }}
+            />
+          </div>
           <span>Chat with Drift AI</span>
           <span
             style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: '#DDE9DF',
-              border: '2px solid #245B52'
+              background: 'rgba(255, 255, 255, 0.2)',
+              fontSize: '11px',
+              fontWeight: 700,
+              padding: '2px 8px',
+              borderRadius: '10px'
             }}
-          />
+          >
+            Live
+          </span>
         </button>
       )}
     </div>

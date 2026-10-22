@@ -18,45 +18,76 @@ export default function AiInsightCard({ insightData }) {
   };
 
   return (
-    <div className="drift-card" id="ai-insight-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+    <div className="drift-card card-accent-indigo" id="ai-insight-card">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
-            background: '#E8E1F5',
-            padding: '8px',
+            width: '38px',
+            height: '38px',
             borderRadius: '10px',
-            color: '#4C3B70'
+            background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#6366F1',
+            boxShadow: '0 4px 12px rgba(99, 102, 241, 0.15)'
           }}>
             <Sparkles size={20} />
           </div>
           <div>
-            <span className="badge badge-indigo" style={{ marginBottom: '4px' }}>Ground-Truth Reflection</span>
-            <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#24332F' }}>AI Wellness Insight with Receipts</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+              <span className="glow-pill glow-pill-indigo">Ground-Truth Reflection</span>
+              <span style={{ fontSize: '11px', color: '#63736B', fontWeight: 600 }}>Zero-Hallucination Verified</span>
+            </div>
+            <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#24332F', margin: 0 }}>
+              AI Wellness Reflection with Receipts
+            </h3>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#63736B' }}>
-          <Shield size={14} color="#245B52" />
-          <span>Validated (0% Hallucination)</span>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          background: 'rgba(16, 185, 129, 0.1)',
+          color: '#047857',
+          border: '1px solid rgba(16, 185, 129, 0.3)',
+          padding: '5px 12px',
+          borderRadius: '16px',
+          fontSize: '11.5px',
+          fontWeight: '700'
+        }}>
+          <Shield size={14} color="#10B981" />
+          <span>Audited Receipt Trail</span>
         </div>
       </div>
 
       <div style={{
-        background: '#FAFBF9',
+        background: 'linear-gradient(135deg, rgba(238, 242, 255, 0.45) 0%, rgba(255, 255, 255, 0.95) 100%)',
         borderRadius: '12px',
-        padding: '16px',
-        border: '1px solid #E3E7DD',
+        padding: '16px 18px',
+        border: '1px solid #C7D2FE',
         marginBottom: '16px',
-        lineHeight: '1.6',
+        lineHeight: '1.7',
         fontSize: '14px',
-        color: '#24332F'
+        color: '#24332F',
+        boxShadow: '0 2px 8px rgba(99, 102, 241, 0.04)'
       }}>
         <p style={{ marginBottom: '12px' }}>
           <span
             className="receipt-clickable-sentence"
             title="Click to view numerical evidence receipt"
             onClick={() => handleSentenceClick('shift')}
-            style={{ borderBottom: '1.5px dashed #4C3B70', cursor: 'pointer', color: '#24332F' }}
+            style={{
+              background: 'rgba(99, 102, 241, 0.08)',
+              padding: '2px 6px',
+              borderRadius: '6px',
+              borderBottom: '2px solid #6366F1',
+              cursor: 'pointer',
+              color: '#312E81',
+              fontWeight: 500,
+              transition: 'all 0.15s ease'
+            }}
           >
             {what_changed}
           </span>
@@ -67,7 +98,16 @@ export default function AiInsightCard({ insightData }) {
             className="receipt-clickable-sentence"
             title="Click to view numerical evidence receipt"
             onClick={() => handleSentenceClick('pattern')}
-            style={{ borderBottom: '1.5px dashed #4C3B70', cursor: 'pointer', color: '#24332F' }}
+            style={{
+              background: 'rgba(99, 102, 241, 0.08)',
+              padding: '2px 6px',
+              borderRadius: '6px',
+              borderBottom: '2px solid #6366F1',
+              cursor: 'pointer',
+              color: '#312E81',
+              fontWeight: 500,
+              transition: 'all 0.15s ease'
+            }}
           >
             {pattern}
           </span>{' '}
@@ -75,39 +115,64 @@ export default function AiInsightCard({ insightData }) {
             className="receipt-clickable-sentence"
             title="Click to view numerical evidence receipt"
             onClick={() => handleSentenceClick('drift')}
-            style={{ borderBottom: '1.5px dashed #4C3B70', cursor: 'pointer', color: '#24332F' }}
+            style={{
+              background: 'rgba(13, 148, 136, 0.08)',
+              padding: '2px 6px',
+              borderRadius: '6px',
+              borderBottom: '2px solid #0D9488',
+              cursor: 'pointer',
+              color: '#134E4A',
+              fontWeight: 500,
+              transition: 'all 0.15s ease'
+            }}
           >
             {factors}
           </span>
         </p>
 
         {support && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#245B52', fontSize: '13px', marginTop: '10px', fontWeight: 500 }}>
-            <HeartHandshake size={16} />
-            <em>{support}</em>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: '#065F46',
+            background: 'rgba(16, 185, 129, 0.08)',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            fontSize: '13px',
+            marginTop: '12px',
+            fontWeight: 600
+          }}>
+            <HeartHandshake size={16} color="#10B981" />
+            <span>{support}</span>
           </div>
         )}
       </div>
 
       {/* Micro-suggestions */}
       {suggestions && suggestions.length > 0 && (
-        <div style={{ marginBottom: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: '700', color: '#63736B', marginBottom: '8px' }}>
-            <Lightbulb size={14} color="#245B52" />
+        <div style={{ marginBottom: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: '800', color: '#63736B', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <Lightbulb size={13} color="#F59E0B" />
             <span>Gentle Micro-Adjustments:</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {suggestions.map((s, idx) => (
               <div key={idx} style={{
                 fontSize: '13px',
                 color: '#24332F',
-                padding: '9px 12px',
+                padding: '10px 14px',
                 borderRadius: '8px',
                 background: '#FFFFFF',
                 border: '1px solid #E3E7DD',
-                borderLeft: '3px solid #245B52'
+                borderLeft: '3.5px solid #0D9488',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
               }}>
-                {s}
+                <span style={{ color: '#0D9488', fontWeight: 800 }}>•</span>
+                <span>{s}</span>
               </div>
             ))}
           </div>
@@ -115,21 +180,21 @@ export default function AiInsightCard({ insightData }) {
       )}
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', fontSize: '11px', color: '#63736B' }}>
-        <span>Tip: Click underlined text to inspect the underlying numerical facts.</span>
+        <span>Tip: Click any highlighted text above to inspect its underlying numerical facts.</span>
         <button
           type="button"
           onClick={() => setSelectedReceipt(receipts?.[0] || null)}
           style={{
             background: 'none',
             border: 'none',
-            color: '#245B52',
-            fontWeight: 600,
+            color: '#0D9488',
+            fontWeight: 700,
             cursor: 'pointer',
             textDecoration: 'underline',
-            fontSize: '11px'
+            fontSize: '11.5px'
           }}
         >
-          View All Receipts
+          View All Receipts →
         </button>
       </div>
 

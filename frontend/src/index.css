@@ -1,23 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
 
 :root {
   /* =========================================================================
-     Human-Centred Wellness Design Palette
+     Advanced Colourful Wellness System Palette
      ========================================================================= */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', var(--font-sans);
   --font-serif: 'Newsreader', Georgia, serif;
 
   /* Core Canvas & Surfaces */
   --bg-main: #F6F5EF;            /* Warm Ivory base */
   --bg-card: #FFFFFF;            /* Pure clean white surface */
   --bg-card-subtle: #FAF9F5;     /* Soft ivory secondary card */
+  --bg-card-glass: rgba(255, 255, 255, 0.85); /* Glassmorphic card */
   --bg-hover: #F0EFE8;           /* Hover surface */
 
-  /* Brand Accents */
+  /* Brand Accents - Deep Teal & Emerald */
   --primary-brand: #245B52;      /* Deep Teal */
   --primary-hover: #1b453e;      /* Darker Teal */
   --primary-light: #2d6e63;
+  --primary-emerald: #10B981;    /* Vibrant Emerald */
   --primary-subtle: rgba(36, 91, 82, 0.08);
+
+  /* Rich Vibrant Accent Palette */
+  --vibrant-teal: #0D9488;
+  --vibrant-emerald: #10B981;
+  --vibrant-indigo: #6366F1;
+  --vibrant-violet: #8B5CF6;
+  --vibrant-purple: #7C3AED;
+  --vibrant-coral: #F43F5E;
+  --vibrant-rose: #FB7185;
+  --vibrant-amber: #F59E0B;
+  --vibrant-gold: #FBBF24;
+  --vibrant-cyan: #06B6D4;
+  --vibrant-sky: #0EA5E9;
 
   /* Supportive Emotional Accent Palette */
   --soft-sage: #DDE9DF;          /* Soft Sage */
@@ -35,6 +51,14 @@
   --warm-sand: #EFECE3;
   --warm-sand-dark: #635741;
 
+  /* Radiant Gradients */
+  --gradient-teal: linear-gradient(135deg, #10B981 0%, #0D9488 50%, #245B52 100%);
+  --gradient-indigo: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #5B487A 100%);
+  --gradient-coral: linear-gradient(135deg, #F43F5E 0%, #FB7185 50%, #E9B9A9 100%);
+  --gradient-amber: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #D97706 100%);
+  --gradient-cyan: linear-gradient(135deg, #06B6D4 0%, #0EA5E9 50%, #2563EB 100%);
+  --gradient-rainbow: linear-gradient(135deg, #10B981 0%, #06B6D4 25%, #6366F1 50%, #8B5CF6 75%, #F43F5E 100%);
+
   /* Typography */
   --text-main: #24332F;          /* Deep rich forest-charcoal */
   --text-secondary: #63736B;     /* Calming muted slate-moss */
@@ -46,17 +70,22 @@
   --border-hover: #CBD4C2;
   --border-focus: #245B52;
 
-  /* Soft Organic Shadows (no harsh neon glow) */
+  /* Soft Organic & Ambient Glowing Shadows */
   --shadow-subtle: 0 1px 3px rgba(36, 51, 47, 0.04), 0 1px 2px rgba(36, 51, 47, 0.02);
   --shadow-card: 0 4px 16px -2px rgba(36, 51, 47, 0.05), 0 2px 6px -1px rgba(36, 51, 47, 0.02);
-  --shadow-elevated: 0 14px 30px -4px rgba(36, 51, 47, 0.07), 0 4px 10px -2px rgba(36, 51, 47, 0.03);
+  --shadow-elevated: 0 14px 30px -4px rgba(36, 51, 47, 0.08), 0 4px 10px -2px rgba(36, 51, 47, 0.03);
+  --shadow-glow-teal: 0 8px 24px -4px rgba(16, 185, 129, 0.22);
+  --shadow-glow-indigo: 0 8px 24px -4px rgba(99, 102, 241, 0.22);
+  --shadow-glow-coral: 0 8px 24px -4px rgba(244, 63, 94, 0.22);
+  --shadow-glow-amber: 0 8px 24px -4px rgba(245, 158, 11, 0.22);
   --shadow-modal: 0 24px 60px -12px rgba(36, 51, 47, 0.18), 0 8px 16px -4px rgba(36, 51, 47, 0.06);
 
-  /* Layout Corner Radii (12-20px) */
+  /* Layout Corner Radii */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
+  --radius-2xl: 24px;
   --radius-pill: 9999px;
 }
 
@@ -69,6 +98,13 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-main);
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(221, 233, 223, 0.5) 0px, transparent 40%),
+    radial-gradient(at 90% 15%, rgba(232, 225, 245, 0.55) 0px, transparent 40%),
+    radial-gradient(at 50% 50%, rgba(246, 245, 239, 1) 0px, transparent 70%),
+    radial-gradient(at 80% 85%, rgba(233, 185, 169, 0.35) 0px, transparent 45%),
+    radial-gradient(at 20% 90%, rgba(221, 233, 223, 0.4) 0px, transparent 45%);
+  background-attachment: fixed;
   color: var(--text-main);
   min-height: 100vh;
   line-height: 1.55;
@@ -77,53 +113,84 @@ body {
 }
 
 /* =========================================================================
-   Universal Card Component
+   Universal Card Component - Glass & Depth
    ========================================================================= */
 .drift-card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-main);
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .drift-card:hover {
-  border-color: var(--border-hover);
+  border-color: #CBD7CE;
+  transform: translateY(-2px);
   box-shadow: var(--shadow-elevated);
 }
 
-/* Restrained accent cards without neon borders */
-.drift-card-glow {
-  border-color: #CBDCD0;
-  background: #FFFFFF;
+/* Colorful Card Accent Strips */
+.drift-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.card-accent-teal::before {
+  background: var(--gradient-teal);
+}
+
+.card-accent-indigo::before {
+  background: var(--gradient-indigo);
+}
+
+.card-accent-coral::before {
+  background: var(--gradient-coral);
+}
+
+.card-accent-amber::before {
+  background: var(--gradient-amber);
+}
+
+.card-accent-cyan::before {
+  background: var(--gradient-cyan);
 }
 
 /* =========================================================================
    Buttons & Interactive Elements
    ========================================================================= */
 .btn-primary {
-  background: var(--primary-brand);
+  background: var(--gradient-teal);
   color: #FFFFFF;
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 14px;
   padding: 10px 20px;
   border-radius: var(--radius-md);
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 2px 6px rgba(36, 91, 82, 0.2);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(36, 91, 82, 0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  filter: brightness(1.05);
 }
 
 .btn-primary:active {
@@ -442,3 +509,122 @@ textarea:focus {
 .pulse-anim {
   animation: pulse-subtle 2s ease-in-out infinite;
 }
+
+/* =========================================================================
+   Advanced Colourful UI Utilities
+   ========================================================================= */
+.gradient-text-teal {
+  background: var(--gradient-teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-indigo {
+  background: var(--gradient-indigo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-coral {
+  background: var(--gradient-coral);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-rainbow {
+  background: var(--gradient-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glowing Status Indicator Dots */
+.status-dot-emerald {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: status-pulse-emerald 2s infinite;
+}
+
+@keyframes status-pulse-emerald {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.status-dot-amber {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #F59E0B;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+  animation: status-pulse-amber 2s infinite;
+}
+
+@keyframes status-pulse-amber {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+.status-dot-coral {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #F43F5E;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.25);
+  animation: status-pulse-coral 1.8s infinite;
+}
+
+@keyframes status-pulse-coral {
+  0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(244, 63, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+/* Advanced Glass Panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px 0 rgba(36, 51, 47, 0.05);
+}
+
+/* Glowing Pill Badges */
+.glow-pill-teal {
+  background: #E8F5EE;
+  color: #0E6251;
+  border: 1px solid #B8E2CB;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
+}
+
+.glow-pill-indigo {
+  background: #EEF2FF;
+  color: #4338CA;
+  border: 1px solid #C7D2FE;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12);
+}
+
+.glow-pill-coral {
+  background: #FFF1F2;
+  color: #BE123C;
+  border: 1px solid #FECDD3;
+  box-shadow: 0 2px 8px rgba(244, 63, 94, 0.12);
+}
+
+.glow-pill-amber {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+}
+
+.glow-pill-cyan {
+  background: #ECFEFF;
+  color: #0E7490;
+  border: 1px solid #A5F3FC;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.12);
+}
+
